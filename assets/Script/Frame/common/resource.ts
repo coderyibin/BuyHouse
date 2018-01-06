@@ -1,4 +1,6 @@
-import { Common } from "./Module/Common";
+import { Common } from "./Common";
+
+
 
 export enum RES_TYPE {
     GLOBAL,//全局资源
@@ -14,18 +16,40 @@ export enum RES_TYPE {
     static Res = {
         "global" : {}
     };
-     
-    //加载资源数组
-    static loadArray (file : Array<string>, progress : Function, cb ?: Function) : void {
-        cc.loader.loadResArray(file, (Count: number, total: number, item: any) => {
-            progress.call(Count, total, item);
-        }, (err: Error, res: any[]) => {
-            if (err)  {
-                cc.warn("res error!");
-                return;
-            }
-            if (cb) cb.call(res);
+
+    static ResConfig = {};
+
+    //加载资源配置文件--直接加载公共资源
+    static loadResConfig (cb : Function) : void {
+        this.loadJson("resources", (res)=>{
+            this.ResConfig = res;
+            cb(res.Common);
         });
+    }
+     
+    /**
+     * 加载资源组-只在
+     * @param file 名称-字符串数组
+     * @param progress 进度-没加载成功一个会调用一次
+     * @param cb 加载完成的回调函数
+     */
+    static loadArray (file : Array<string>, progress : Function, cb ?: Function) : void {
+        let tatol = file.length;
+        for (let i in file) {
+            RES.loadResToGlobal(file[i], (res)=>{
+
+            });
+        }
+        // cc.loader.loadResArray(file, (Count: number, total: number, item: any) => {
+        //     progress.call(Count, total, item);
+        // }, (err: Error, res: any[]) => {
+        //     if (err)  {
+        //         cc.warn("res error!");
+        //         return;
+        //     }
+        //     debugger
+        //     if (cb) cb.call(res);
+        // });
     }
 
     static loadJson (file : string, cb ?: Function) : void {

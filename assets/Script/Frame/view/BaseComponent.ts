@@ -113,22 +113,22 @@ export default class BaseComponent extends cc.Component {
         }
     }
 
-    /**
-     * 运行指定的场景
-     * @param name 场景名称 
-     * @param cb 加载成功的回调函数 选填
-     */
-    _runScene (name : string, cb ?: Function) : void {
-        let self = this;
-        cc.director.preloadScene(name, (err) => {
-            if (err) {
-                cc.warn("场景预加载失败->[", name, "]");
-            } else {
-                self.onExit();
-                cc.director.loadScene(name, cb);
-            }
-        });
-    }
+    // /**
+    //  * 运行指定的场景
+    //  * @param name 场景名称 
+    //  * @param cb 加载成功的回调函数 选填
+    //  */
+    // _runScene (name : string, cb ?: Function) : void {
+    //     let self = this;
+    //     cc.director.preloadScene(name, (err) => {
+    //         if (err) {
+    //             cc.warn("场景预加载失败->[", name, "]");
+    //         } else {
+    //             self.onExit();
+    //             cc.director.loadScene(name, cb);
+    //         }
+    //     });
+    // }
 
     /**
      * 判断当前节点是否是逻辑节点
@@ -199,6 +199,6 @@ export default class BaseComponent extends cc.Component {
      */
     _cleanData (key : Array<string>) : void {
         let self = this;
-        self._playerCtrl.fCleanData([LOCAL_KEY.PLAYER]);
+        // self._playerCtrl.fCleanData([LOCAL_KEY.PLAYER]);
     }
 }

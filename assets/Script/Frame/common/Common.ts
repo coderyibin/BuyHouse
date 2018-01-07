@@ -59,12 +59,23 @@ import { Base64 } from "./Base64";
      * @param 文件路径
      */
     static fGetFileName (path : string) : string {
-        let index : number = path.indexOf("/"); 
-        if (index != -1) {
-            let name = path.substr(index + 1, path.length);
-            return name;
-        } else {
-            return path;
+        while (true) {
+            let index : number = path.indexOf("/"); 
+            if (index != -1) {
+                path = path.substr(index + 1, path.length);
+            } else {
+                return path;
+            }
         }
+    }
+
+    //获取json数据的长度
+    static fGetJsonLength (json : any) : number {
+        if (! json || ! (json instanceof Object)) return;
+        let len : number= 0;
+        for (let i in json) {
+            len ++;
+        }
+        return len;
     }
  }

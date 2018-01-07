@@ -1,3 +1,26 @@
 {
-    "Common" : ["resources.json","resources.json"]
+    "Common" : [
+        "Common/0",
+        "Common/2",
+        "Common/3",
+        "Common/4",
+        "Common/5",
+        "Common/6",
+        "Common/7",
+        "Common/8",
+        "Common/9",
+        "Common/1"        
+    ],
+    "StartGame" : [
+        "StartGame/Prefab/Item_ProductItem",
+        "StartGame/shop/huangjinshipin",
+        "StartGame/shop/huazhuangpin",
+        "StartGame/shop/jingpindami",
+        "StartGame/shop/mianzhao",
+        "StartGame/shop/naifen",
+        "StartGame/shop/qiche",
+        "StartGame/shop/shengqin",
+        "StartGame/shop/zhuanjiyinqingcai",
+        "StartGame/shop/shouji"
+        ]
 }

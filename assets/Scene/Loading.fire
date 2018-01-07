@@ -248,7 +248,7 @@
   },
   {
     "__type__": "cc.Node",
-    "_name": "loading",
+    "_name": "Loading",
     "_objFlags": 0,
     "_parent": {
       "__id__": 3
@@ -269,7 +269,7 @@
       }
     ],
     "_prefab": null,
-    "_id": "c2zGOyZnNA57v38HzbOaut",
+    "_id": "6bDCknqARHMaFJt70m+7y7",
     "_opacity": 255,
     "_color": {
       "__type__": "cc.Color",
@@ -281,13 +281,13 @@
     "_cascadeOpacityEnabled": true,
     "_anchorPoint": {
       "__type__": "cc.Vec2",
-      "x": 0.5,
+      "x": 0,
       "y": 0.5
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 500,
-      "height": 30
+      "width": 400,
+      "height": 15
     },
     "_rotationX": 0,
     "_rotationY": 0,
@@ -295,8 +295,8 @@
     "_scaleY": 1,
     "_position": {
       "__type__": "cc.Vec2",
-      "x": 0,
-      "y": -320
+      "x": -184,
+      "y": -318
     },
     "_skewX": 0,
     "_skewY": 0,
@@ -321,7 +321,7 @@
       }
     ],
     "_prefab": null,
-    "_id": "81e/U5wo9CvLk0HzaSiSxZ",
+    "_id": "93M7XSdFlHLqy4LI+3ARIF",
     "_opacity": 255,
     "_color": {
       "__type__": "cc.Color",
@@ -333,13 +333,13 @@
     "_cascadeOpacityEnabled": true,
     "_anchorPoint": {
       "__type__": "cc.Vec2",
-      "x": 0,
+      "x": 1,
       "y": 0.5
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 0,
-      "height": 28
+      "width": 100,
+      "height": 29
     },
     "_rotationX": 0,
     "_rotationY": 0,
@@ -347,8 +347,8 @@
     "_scaleY": 1,
     "_position": {
       "__type__": "cc.Vec2",
-      "x": -250.9,
-      "y": 0.6
+      "x": 100,
+      "y": 0
     },
     "_skewX": 0,
     "_skewY": 0,
@@ -376,7 +376,7 @@
       "x": 0,
       "y": 0
     },
-    "_fillStart": 0,
+    "_fillStart": 1,
     "_fillRange": 0,
     "_isTrimmedMode": true,
     "_srcBlendFactor": 770,
@@ -394,7 +394,7 @@
     "_spriteFrame": {
       "__uuid__": "b8296500-f696-414b-96e8-99cf0b6e343b"
     },
-    "_type": 1,
+    "_type": 0,
     "_sizeMode": 0,
     "_fillType": 0,
     "_fillCenter": {
@@ -417,13 +417,13 @@
       "__id__": 6
     },
     "_enabled": true,
-    "_N$totalLength": 1,
+    "_N$totalLength": 100,
     "_N$barSprite": {
       "__id__": 8
     },
     "_N$mode": 0,
-    "_N$progress": 0,
-    "_N$reverse": false
+    "_N$progress": 1,
+    "_N$reverse": true
   },
   {
     "__type__": "cc.Widget",

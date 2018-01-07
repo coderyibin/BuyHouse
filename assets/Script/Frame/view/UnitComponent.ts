@@ -13,9 +13,13 @@
     _nodeParent : cc.Node;
     //单元组件的数据id
     _nUnitDataId : number;
+    //脚本数据
+    _oData : any;
+    //父节点
+    _parent : cc.Node;
     
     onLoad () : void {
-        super.onLoad();
+        super.onLoad(); 
         let self = this;
 
         self._fInitUI();
@@ -23,4 +27,15 @@
     }
 
     _fInitUI () : void {}
+
+    protected fRefresh () : void {
+    }
+
+    show (parent : cc.Node, param ?: any) : cc.Node {
+        this._oData = param;
+        this._parent = parent;
+        this.fRefresh();
+        return this.node;
+    }
+
  }

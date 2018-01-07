@@ -17,18 +17,39 @@ export enum RES_TYPE {
         "global" : {}
     };
 
-    static ResConfig = {};
+    static ResConfig : inter_Res = {};
 
     //加载资源配置文件--直接加载公共资源
     static loadResConfig (cb : Function) : void {
-        this.loadJson("resources", (res)=>{
-            this.ResConfig = res;
+        RES.loadJson("resources", (res : inter_Res)=>{
+            RES.ResConfig = res;
             cb(res.Common);
         });
     }
+
+    /**
+     * 加载全局资源组
+     * @param 资源数组名称
+     * @param 加载单个回调-没加载成功一个资源会回调一次
+     * @param 加载资源组完成后回调
+     */
+    static loadArrayToGlobal (file : Array<string>, progress ?: Function, complete ?: Function) : void {
+        let len = file.length;
+        let index = 0;
+        for (let i in file) {
+            RES.loadResToGlobal(file[i], (res)=>{
+                index ++;
+                if (index == len) {
+                    complete();
+                } else {
+                    progress(index, len, res);
+                }
+            });
+        }
+    }
      
     /**
-     * 加载资源组-只在
+     * 加载资源组
      * @param file 名称-字符串数组
      * @param progress 进度-没加载成功一个会调用一次
      * @param cb 加载完成的回调函数
@@ -62,16 +83,6 @@ export enum RES_TYPE {
         });
     }
 
-    //获取json数据的长度
-    static getJsonLength (json : any) : number {
-        if (! json || ! (json instanceof Object)) return;
-        let len : number= 0;
-        for (let i in json) {
-            len ++;
-        }
-        return len;
-    }
-
     static loadRes (file : string, cb ?: Function, target ?: any) : void {
         let sName : string = cc.director.getScene().name;
         let func : Function = (res, target) => {
@@ -89,14 +100,15 @@ export enum RES_TYPE {
     static loadResToGlobal (file : string, cb ?: Function, target ?: any) : void {
         let sName : string = cc.director.getScene().name;
         let func : Function = (res, target) => {
+            let fileName = Common.fGetFileName(file);
             //场景名称-文件名称
-            RES.Res["global"][file] = res;
+            RES.Res["global"][fileName] = res;
             cb(res, target);
         };
         RES._loadRes(file, func, target);
     }
 
-    static _loadRes (file : string, cb : Function, target : any) : void {
+    private static _loadRes (file : string, cb : Function, target : any) : void {
         cc.loader.loadRes(file, (err, res) => {//res 图片的话为texture2d对象
             if (err) {
                 cc.warn(res, "图片资源读取出错");

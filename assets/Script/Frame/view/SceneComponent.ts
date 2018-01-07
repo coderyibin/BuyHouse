@@ -12,12 +12,12 @@ export default class SceneComponent extends BaseComponent {
      */
     protected _runScene (sceneName : string, callBack ?: Function) : void {
         let self = this;
-        cc.director.preloadScene(name, (err) => {
+        cc.director.preloadScene(sceneName, (err) => {
             if (err) {
-                cc.warn("场景预加载失败->[", name, "]");
+                cc.warn("场景预加载失败->[", sceneName, "]");
             } else {
                 self.onExit();
-                cc.director.loadScene(name, callBack);
+                cc.director.loadScene(sceneName, callBack);
             }
         });
     }

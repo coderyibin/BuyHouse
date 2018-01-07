@@ -15,20 +15,25 @@ export default class S_Loading extends BaseLoading {
     onLoad () : void {
         super.onLoad();
         let self = this;
-        self.LoadBar.progress = 0;
-        self.scheduleOnce(self._Loaded, 1);
+        self.LoadBar.progress = 0.2;
+        self.LoadBar.totalLength = 100;
+        self.scheduleOnce(()=>{
+            let res = RES.ResConfig.Common.concat(RES.ResConfig.StartGame);
+            RES.loadArrayToGlobal(res, self._fProgress.bind(self), self._fLoaded.bind(self));
+        }, 1);
     }
 
     loadRes (file : any) : void {
         let self = this;       
      }
 
-    private _progress (count, total, item) : void{
-        console.log(count);
-        console.log(total);
+    private _fProgress (count, total, item) : void {
+        let self = this;
+        let d = count / total;
+        self.LoadBar.progress = d;
     }
 
-    private _Loaded () : void{
+    private _fLoaded () : void {
         let self = this;
         self.LoadBar.progress = 1;
         self.scheduleOnce(()=>{

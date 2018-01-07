@@ -62,6 +62,7 @@ export default class BaseComponent extends cc.Component {
         let self = this;
         //当前如果是逻辑节点才去注册这个事件，避免重复注册
         self._emitter.on("runScene", self._runScene, self);
+        self._logicComponentName = self.fGetLogicComponentName();
         
         self._registerButton();
         self._fLabelObject();
@@ -71,7 +72,7 @@ export default class BaseComponent extends cc.Component {
      * 注册按钮事件
      */
     _registerButton () : void {
-        let self = this;
+        let self = this;   
         for (let i in self.ArrButton) {
             let _node = self.ArrButton[i];
             let _btn = _node.getComponent("cc.Button");
@@ -148,6 +149,13 @@ export default class BaseComponent extends cc.Component {
     }
 
     /**
+     * 获取当前场景逻辑组件名称
+     */
+    fGetLogicComponentName () : string {
+        return "S_" + cc.director.getScene().name;
+    }
+
+    /**
      * 获取当前脚本对象名称
      * @return 脚本对象名称
      */
@@ -166,7 +174,7 @@ export default class BaseComponent extends cc.Component {
      * @param data 自定义数据 选填
      */
     addBtnEvent (name : string, btn : cc.Button, data ?: any) : void {
-        let self = this;        
+        let self = this;     
         if (! self._isLogicNode()) return;
         var clickEventHandler = new cc.Component.EventHandler();
         clickEventHandler.target = self.node; //这个 node 节点是你的事件处理代码组件所属的节点

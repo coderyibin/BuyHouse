@@ -7,6 +7,7 @@ const { ccclass } = cc._decorator;
 export default class BaseLoading extends SceneComponent {
     onLoad () : void {
         RES.loadResConfig((file)=>{
+            //读取资源配置
             this.loadRes(file);
         });
     }

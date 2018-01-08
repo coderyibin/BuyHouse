@@ -15,6 +15,12 @@ export default class S_StartGame extends SceneComponent {
     })
     Marketplace : cc.ScrollView = null;
 
+    @property({
+        tooltip : "背包商品列表",
+        type : cc.ScrollView
+    })
+    Package : cc.ScrollView = null;
+
     onLoad () : void {
         super.onLoad();
         _gameCtrl = GameCtrl.getInstance();
@@ -28,10 +34,10 @@ export default class S_StartGame extends SceneComponent {
     private _startGame () : void {
         let self = this;
         let list = _gameCtrl.fGetProductList();
-        console.log(list);
         for (let i in list) {
-            let item : cc.Node = RES.fGetRes("Item_ProductItem");
-            let comp = item.getComponent(item.name).show(self.Marketplace.content, list[i]);
+            let item : cc.Node = RES.fGetRes("Unit_Product");
+            let node = item.getComponent(item.name).CreateItem(list[i]);
+            self.Marketplace.content.addChild(node);
         }
     }
 

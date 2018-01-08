@@ -1,3 +1,6 @@
+import ButtonClick from "./ButtonClick";
+import { Common } from "../common/Common";
+
 /**
  * 单元类型脚本组件
  */
@@ -19,23 +22,14 @@
     _parent : cc.Node;
     
     onLoad () : void {
-        super.onLoad(); 
+        // super.onLoad(); 
         let self = this;
 
         self._fInitUI();
-        self.node.parent = self._nodeParent;
     }
 
-    _fInitUI () : void {}
-
-    protected fRefresh () : void {
+    _fInitUI () : void {
+        let btn : ButtonClick = this.node.addComponent("ButtonClick");
+        btn.CreateButton(this, Common.fGetObjectName(this));
     }
-
-    show (parent : cc.Node, param ?: any) : cc.Node {
-        this._oData = param;
-        this._parent = parent;
-        this.fRefresh();
-        return this.node;
-    }
-
  }

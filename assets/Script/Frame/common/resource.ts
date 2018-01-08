@@ -133,6 +133,7 @@ export enum RES_TYPE {
             if (file == i) {
                 let res = g_Arr[i];
                 return res instanceof cc.Prefab ? cc.instantiate(res) : res;
+                // return res;
             }
         }
         let sName : string = cc.director.getScene().name;

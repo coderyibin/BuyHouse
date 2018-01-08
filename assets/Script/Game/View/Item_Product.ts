@@ -4,7 +4,7 @@ import { RES } from "../../Frame/common/resource";
 const { ccclass, property } = cc._decorator;
 
 @ccclass
-export class Item_ProductItem extends UnitComponent {
+export class Item_Product extends UnitComponent {
     @property({
         tooltip : "商品名称图片",
         type : cc.Sprite
@@ -17,6 +17,7 @@ export class Item_ProductItem extends UnitComponent {
     ProductPrice : cc.Node = null;
 
     onLoad () : void {
+        super.onLoad();
     }
 
     protected fRefresh () : void {
@@ -30,7 +31,12 @@ export class Item_ProductItem extends UnitComponent {
             sp.spriteFrame = RES.fGetRes(price[i]);
             node.parent = self.ProductPrice;
         }
-        self.node.parent = self._parent;
+    }
+
+    CreateItem (param : inter_Product) : cc.Node {
+        this._oData = param;
+        this.fRefresh();
+        return this.node;
     }
 
 }

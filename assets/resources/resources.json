@@ -1,5 +1,7 @@
 {
     "Common" : [
+        "Config",
+        "Product",
         "Common/0",
         "Common/2",
         "Common/3",
@@ -12,7 +14,7 @@
         "Common/1"        
     ],
     "StartGame" : [
-        "StartGame/Prefab/Item_ProductItem",
+        "StartGame/Prefab/Unit_Product",
         "StartGame/shop/huangjinshipin",
         "StartGame/shop/huazhuangpin",
         "StartGame/shop/jingpindami",

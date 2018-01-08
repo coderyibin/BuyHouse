@@ -7,6 +7,7 @@ import { Emitter } from "../ctrl/Emitter"
 import { ClientData } from "../module/ClientData"
 import { RES, RES_TYPE } from "../common/resource";
 import { LOCAL_KEY } from "../common/Common";
+import ButtonClick from "./ButtonClick";
 
 @ccclass
 @executionOrder(0)
@@ -61,7 +62,7 @@ export default class BaseComponent extends cc.Component {
     _logicNode () : void {
         let self = this;
         //当前如果是逻辑节点才去注册这个事件，避免重复注册
-        self._emitter.on("runScene", self._runScene, self);
+        // self._emitter.on("runScene", self._runScene, self);
         self._logicComponentName = self.fGetLogicComponentName();
         
         self._registerButton();
@@ -75,13 +76,8 @@ export default class BaseComponent extends cc.Component {
         let self = this;   
         for (let i in self.ArrButton) {
             let _node = self.ArrButton[i];
-            let _btn = _node.getComponent("cc.Button");
-            self._bindClick(_btn, _node.name);
-            // new ButtonClick().setButtonData({
-            //     name : _node.name,
-            //     btn : _btn,
-            //     comp : self._logicComponentName
-            // });
+            let _btn : ButtonClick = _node.getComponent("cc.Button");
+            _btn.CreateButton(self, _node.name);
         }
     }
 
@@ -96,23 +92,23 @@ export default class BaseComponent extends cc.Component {
         }
     }
 
-    /**
-     * 绑定按钮事件
-     * @param btn 按钮组件对象
-     * @param name 要绑定的函数名称
-     */
-    _bindClick (btn : cc.Button, name : string) : void {
-        let self = this;
-        //获取逻辑节点脚本组件对象
-        let oCompObject = cc.director.getScene().getChildByName("LogicNode").getComponent(self._logicComponentName);
-        let sName = "_tap_" + name + "";
-        if (oCompObject[sName]) {
-            //添加按钮普通的点击事件
-            self.addBtnEvent(sName, btn);
-        } else {
-            cc.warn("该节点组件", self._logicComponentName, "未注册[", sName, "]函数");
-        }
-    }
+    // /**
+    //  * 绑定按钮事件
+    //  * @param btn 按钮组件对象
+    //  * @param name 要绑定的函数名称
+    //  */
+    // _bindClick (btn : cc.Button, name : string) : void {
+    //     let self = this;
+    //     //获取逻辑节点脚本组件对象
+    //     let oCompObject = cc.director.getScene().getChildByName("LogicNode").getComponent(self._logicComponentName);
+    //     let sName = "_tap_" + name + "";
+    //     if (oCompObject[sName]) {
+    //         //添加按钮普通的点击事件
+    //         self.addBtnEvent(sName, btn);
+    //     } else {
+    //         cc.warn("该节点组件", self._logicComponentName, "未注册[", sName, "]函数");
+    //     }
+    // }
 
     // /**
     //  * 运行指定的场景
@@ -152,7 +148,9 @@ export default class BaseComponent extends cc.Component {
      * 获取当前场景逻辑组件名称
      */
     fGetLogicComponentName () : string {
-        return "S_" + cc.director.getScene().name;
+        let scene = cc.director.getScene().name;
+        cc.log(scene);
+        return "S_" + scene;
     }
 
     /**
@@ -167,22 +165,22 @@ export default class BaseComponent extends cc.Component {
         return name;
     }
 
-    /**
-     * 添加按钮点击事件
-     * @param name 点击事件的名称
-     * @param btn 点击事件绑定的按钮
-     * @param data 自定义数据 选填
-     */
-    addBtnEvent (name : string, btn : cc.Button, data ?: any) : void {
-        let self = this;     
-        if (! self._isLogicNode()) return;
-        var clickEventHandler = new cc.Component.EventHandler();
-        clickEventHandler.target = self.node; //这个 node 节点是你的事件处理代码组件所属的节点
-        clickEventHandler.component = self._logicComponentName;//这个是代码文件名
-        clickEventHandler.handler = name;
-        clickEventHandler.customEventData = data;
-        btn.clickEvents.push(clickEventHandler);
-    }
+    // /**
+    //  * 添加按钮点击事件
+    //  * @param name 点击事件的名称
+    //  * @param btn 点击事件绑定的按钮
+    //  * @param data 自定义数据 选填
+    //  */
+    // addBtnEvent (name : string, btn : cc.Button, data ?: any) : void {
+    //     let self = this;     
+    //     if (! self._isLogicNode()) return;
+    //     var clickEventHandler = new cc.Component.EventHandler();
+    //     clickEventHandler.target = self.node; //这个 node 节点是你的事件处理代码组件所属的节点
+    //     clickEventHandler.component = self._logicComponentName;//这个是代码文件名
+    //     clickEventHandler.handler = name;
+    //     clickEventHandler.customEventData = data;
+    //     btn.clickEvents.push(clickEventHandler);
+    // }
 
     /**
      * 当前组件被销毁时调用

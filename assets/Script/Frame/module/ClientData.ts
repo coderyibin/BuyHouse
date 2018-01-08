@@ -15,7 +15,7 @@ export class ClientData {
         console.log("客户端数据初始化");
         self._oResource = {};
         self._oGameConfig = {};
-        self._loadInitConfig();
+        // self._loadInitConfig();
     }
 
     //加载初始化配置

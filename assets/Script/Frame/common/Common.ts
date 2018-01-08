@@ -78,4 +78,17 @@ import { Base64 } from "./Base64";
         }
         return len;
     }
+
+
+    /**
+     * 获取当前脚本对象名称
+     * @param 脚本对象
+     * @return 脚本对象名称
+     */
+    static fGetObjectName (Comp : cc.Component) : string {
+        let name : string = Comp.name;
+        let index : number = name.indexOf("<");
+        name = name.slice(index + 1, name.length - 1);
+        return name;
+    }
  }

@@ -33,15 +33,16 @@ export class Unit_Product extends UnitComponent {
         }
     }
 
-    CreateItem (param : inter_Product) : cc.Node {
+    CreateItem (param : inter_Product) : Unit_Product {
         this._oData = param;
         this.fRefresh();
-        return this.node;
+        return this;
     }
 
 
     _tap_Unit_Product (event, data) : void {
         cc.log(this._oData);
+        
     }
 
 }

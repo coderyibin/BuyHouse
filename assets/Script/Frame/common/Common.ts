@@ -11,6 +11,12 @@ import { Base64 } from "./Base64";
      OVER_SCENE = "GameOver"
  }
 
+ //交易类型
+ export enum TRADE_TYPE {
+     BUY,//买入
+     SALE//卖出
+ }
+
  //数据保存本地的key配置
  export enum LOCAL_KEY {
      PLAYER = "player",

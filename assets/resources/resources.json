@@ -15,6 +15,7 @@
     ],
     "StartGame" : [
         "StartGame/Prefab/Unit_Product",
+        "StartGame/Prefab/Tip_Transactions",
         "StartGame/shop/huangjinshipin",
         "StartGame/shop/huazhuangpin",
         "StartGame/shop/jingpindami",
@@ -24,5 +25,5 @@
         "StartGame/shop/shengqin",
         "StartGame/shop/zhuanjiyinqingcai",
         "StartGame/shop/shouji"
-        ]
+    ]
 }

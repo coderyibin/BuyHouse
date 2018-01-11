@@ -1,5 +1,6 @@
 import ButtonClick from "./ButtonClick";
 import { Common } from "../common/Common";
+import BaseComponent from "./BaseComponent";
 
 /**
  * 单元类型脚本组件
@@ -31,5 +32,8 @@ import { Common } from "../common/Common";
     _fInitUI () : void {
         let btn : ButtonClick = this.node.addComponent("ButtonClick");
         btn.CreateButton(this, Common.fGetObjectName(this));
+        // let name = this.fGetLogicComponentName();
+        // let _comp = cc.director.getScene().getChildByName("LogicNode").getComponent(name);
+        // _comp
     }
  }

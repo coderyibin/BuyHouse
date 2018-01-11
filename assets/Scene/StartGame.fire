@@ -2973,7 +2973,7 @@
   },
   {
     "__type__": "cc.Node",
-    "_name": "TipNode",
+    "_name": "Tip_Buy",
     "_objFlags": 0,
     "_parent": {
       "__id__": 3

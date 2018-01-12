@@ -36,4 +36,8 @@ import BaseComponent from "./BaseComponent";
         // let _comp = cc.director.getScene().getChildByName("LogicNode").getComponent(name);
         // _comp
     }
+
+    public static show (parent, data ?: any) : void {
+
+    }
  }

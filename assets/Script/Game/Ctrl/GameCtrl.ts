@@ -1,5 +1,7 @@
 import { BaseCtrl } from "../../Frame/ctrl/BaseCtrl";
 import { Common } from "../../Frame/common/Common";
+import { ClientData } from "../../Frame/module/ClientData";
+import PlayerData from "../Moudle/PlayerData";
 
 /**
  * 游戏控制器
@@ -7,16 +9,28 @@ import { Common } from "../../Frame/common/Common";
 
  export class GameCtrl extends BaseCtrl {
     private _oProduct : any;//商品数量
+    private _refreshList : boolean;//是否刷新背包列表
 
      constructor () {
          super();
          let self = this;
      }
 
+    /**
+     * 获取玩家背包数据 
+    */
+    getPlayerPackage (id ?: number) : any {
+        if (id) {
+
+        } else {
+            return PlayerData.getInstance().fGetProduct();
+        }
+    }
+
      //获取商品数据
      fGetProductList () : any {
         let self = this;
-        self._oProduct = cc["RES"].Res.global.Product; //self._clientData.fGetProductData();
+        self._oProduct = self._clientData.fGetProductData(); //self._clientData.fGetProductData();
         let Product = [];
         //获取商品总数
         let len = Common.fGetJsonLength(self._oProduct);
@@ -35,6 +49,31 @@ import { Common } from "../../Frame/common/Common";
         if (Product.length == 0) debugger
         return Product;
      }
+
+     /**
+      * 判断当前存款是否足够购买
+      * @param 购买的数量
+      * @param 购买的id
+      */
+      fIsDepositToBuy (count : number, id : number) : any {
+        let self = this;
+        let player = PlayerData.getInstance().Gold;
+        let money = ClientData.getInstance().fGetProductData(id);
+        let total = count * money;
+        if (money >= total) {
+            return true;
+        } else {
+            return false;
+        }
+      }
+
+      /**
+       * 购买商品
+       * @param 商品id
+       */
+    fBuy (id : number) : void {
+
+    }
 
     static _cCtrl : GameCtrl;
     static getInstance () : GameCtrl {

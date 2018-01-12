@@ -1,4 +1,5 @@
 import BaseComponent from "./BaseComponent";
+import { RES } from "../common/resource";
 
 const { ccclass,  property } = cc._decorator;
 
@@ -20,5 +21,28 @@ export default class SceneComponent extends BaseComponent {
                 cc.director.loadScene(sceneName, callBack);
             }
         });
+    }
+
+    /**
+     * 显示弹窗
+     */
+    showLayer (module : string, data ?: any) : void {
+        this._fAddLayerToCanvas();
+        let node = RES.fGetRes(module);
+        let canvas = cc.find("Canvas");
+        canvas.addChild(node);        
+    }
+
+    /**
+     * 添加屏蔽层到canvas节点
+     */
+    _fAddLayerToCanvas () : void {
+        let canvas = cc.find("Canvas");
+        let node = new cc.Node();
+        node.name = "shield";
+        let btn = node.addComponent(cc.Button);
+        node.setContentSize(this.getWinSize());
+        canvas.addChild(node);
+        node.color = cc.Color.GRAY;
     }
 }

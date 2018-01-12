@@ -4,6 +4,10 @@ import { Base64 } from "./Base64";
  * 全局的一些定义
  */
 
+ //模块定义
+ export enum MODULE {
+    BUY = "Tip_Buy"
+ }
  //场景的名称
  export enum SCENE_NAME {
      MENU_SCENE = "MenuScene",

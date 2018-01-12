@@ -41,8 +41,11 @@ export class Unit_Product extends UnitComponent {
 
 
     _tap_Unit_Product (event, data) : void {
-        cc.log(this._oData);
-        
+        let d = JSON.parse(JSON.stringify(this._oData));
+        if (this._oData.cb) {
+            delete d["cb"];
+            this._oData.cb(event, d); 
+        }
     }
 
 }

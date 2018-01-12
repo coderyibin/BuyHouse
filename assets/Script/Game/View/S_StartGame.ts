@@ -1,6 +1,8 @@
 import { GameCtrl } from "../Ctrl/GameCtrl";
 import { RES } from "../../Frame/common/resource";
 import SceneComponent from "../../Frame/view/SceneComponent";
+import { MODULE } from "../../Frame/common/Common";
+import { Emitter } from "../../Frame/ctrl/Emitter";
 
 
 const {ccclass, property} = cc._decorator;
@@ -28,6 +30,7 @@ export default class S_StartGame extends SceneComponent {
 
     start () : void {
         let self = this;
+        Emitter.getInstance().on("refresh", self._refreshList.bind(self), self);
         self._startGame();
     }
 
@@ -36,8 +39,22 @@ export default class S_StartGame extends SceneComponent {
         let list = _gameCtrl.fGetProductList();
         for (let i in list) {
             let item : cc.Node = RES.fGetRes("Unit_Product");
+            list[i]["cb"] = self.BuyShop.bind(self);
             let node = item.getComponent(item.name).CreateItem(list[i]);
-            self.Marketplace.content.addChild(node);
+            self.Marketplace.content.addChild(item);
+        }
+    }
+
+    _refreshList () : void {
+        cc.log("刷新")
+        let self = this;
+        let list = _gameCtrl.getPlayerPackage();
+        debugger
+        for (let i in list) {
+            let item : cc.Node = RES.fGetRes("Unit_Product");
+            // list[i]["cb"] = self.BuyShop.bind(self);
+            let node = item.getComponent(item.name).CreateItem(list[i]);
+            self.Package.content.addChild(item);
         }
     }
 
@@ -45,5 +62,10 @@ export default class S_StartGame extends SceneComponent {
         let self = this;
         self.Marketplace.content.removeAllChildren();
         self._startGame();
+    }
+
+    BuyShop (event, data) : void {
+        // cc.log(data)
+        this.showLayer(MODULE.BUY);
     }
 }

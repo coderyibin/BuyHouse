@@ -30,4 +30,5 @@
      challenge ?: boolean//是否挑战成功
      PanelCount ?: number//方块数量--经典模式
      ProductList ?: number//商品列表数量限制
+     PlayerMoney ?: number//玩家初始金币
  }

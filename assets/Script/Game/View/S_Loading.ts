@@ -1,5 +1,7 @@
 import { SCENE_NAME } from "../../Frame/common/Common";
 import { RES } from "../../Frame/common/resource";
+import PlayerData from "../Moudle/PlayerData";
+import { ClientData } from "../../Frame/module/ClientData";
 
 
 const {ccclass, property} = cc._decorator;
@@ -44,6 +46,8 @@ export default class S_Loading extends cc.Component {
     _onSucceed () : void {
         let self = this;
         self.Loading.progress = 1;
+        PlayerData.getInstance().init();        
+        ClientData.getInstance().init();
         cc.director.loadScene(SCENE_NAME.MENU_SCENE);
     }
 }

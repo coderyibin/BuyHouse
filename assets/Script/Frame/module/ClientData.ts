@@ -1,4 +1,3 @@
-import { RES } from "../common/resource";
 
 /**
  * 游戏数据单利
@@ -18,20 +17,26 @@ export class ClientData {
         // self._loadInitConfig();
     }
 
-    //加载初始化配置
-    private _loadInitConfig () {
-        let self = this;
-        setTimeout(()=>{
-            RES.loadJson("Product", (res)=>{
-                cc["Product"] = res;
-                self._oProductData = res;
-            });
-            RES.loadJson("Config", (res)=>{
-                cc["Config"] = res;
-                self._oGameConfig = res;
-            });
-        }, 1000);
+    // //加载初始化配置
+    // private _loadInitConfig () {
+    //     let self = this;
+    //     setTimeout(()=>{
+    //         RES.loadJson("Product", (res)=>{
+    //             cc["Product"] = res;
+    //             self._oProductData = res;
+    //         });
+    //         RES.loadJson("Config", (res : inter_Config)=>{
+    //             cc["Config"] = res;
+    //             self._oGameConfig = res;
+    //         });
+    //     }, 1000);
         
+    // }
+
+    init () : void {
+        cc["Product"] = cc["RES"].Res.global.Product;
+        this._oProductData = cc["Product"];
+        delete cc["RES"].Res.global.Product;
     }
 
     /**设置游戏配置
@@ -55,7 +60,18 @@ export class ClientData {
         return this._oResource;
     }
 
-    fGetProductData () : any {
+    /**
+     * 获取产品数据
+     * @param 产品id 选填
+     */
+    fGetProductData (id ?: number) : any {
+        if (id) {
+            for (let i in this._oProductData) {
+                if (this._oProductData[i].id == id) {
+                    return this._oProductData[i].price;
+                }
+            }
+        }
         return this._oProductData;
     }
 

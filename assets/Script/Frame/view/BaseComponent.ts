@@ -43,11 +43,14 @@ export default class BaseComponent extends cc.Component {
         if (self._isLogicNode()) {
             self._logicNode();
         }
+
         self._initUI();
     }
 
     _initUI () : void {
         let self = this;
+        self._registerButton();
+        self._fLabelObject();
     }
 
     _initData () : void {
@@ -65,8 +68,8 @@ export default class BaseComponent extends cc.Component {
         // self._emitter.on("runScene", self._runScene, self);
         self._logicComponentName = self.fGetLogicComponentName();
         
-        self._registerButton();
-        self._fLabelObject();
+        // self._registerButton();
+        // self._fLabelObject();
     }
 
     /**
@@ -78,7 +81,7 @@ export default class BaseComponent extends cc.Component {
             let _node = self.ArrButton[i];
             let _btn : ButtonClick = _node.getComponent("ButtonClick");
             if (! _btn) {
-                _btn.addComponent("ButtonClick");
+                _btn = _node.addComponent("ButtonClick");
             }
             _btn.CreateButton(self, _node.name);
         }

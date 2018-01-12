@@ -11,6 +11,11 @@ import { BaseData } from "./BaseData";
     _name : string = "";
     //玩家uid
     _uid : number = 0;
+    //玩家金币
+    Gold : number = 0;
+    //玩家背包
+    Package : any = null;
+
     constructor () {
         super();
     }

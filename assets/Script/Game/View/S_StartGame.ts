@@ -39,10 +39,7 @@ export default class S_StartGame extends SceneComponent {
         let self = this;
         let list = _gameCtrl.fGetProductList();
         for (let i in list) {
-            // let item : cc.Node = RES.fGetRes("Unit_Product");
-            // list[i]["cb"] = self.BuyShop.bind(self);
-            // let node = item.getComponent(item.name).CreateItem(list[i]);
-            // self.Marketplace.content.addChild(item);
+            list[i]["cb"] = self.BuyShop.bind(self);
             let node = Unit_Product.show(MODULE.SHOP_UNIT, list[i]);
             self.Marketplace.content.addChild(node);
         }
@@ -60,10 +57,8 @@ export default class S_StartGame extends SceneComponent {
         let self = this;
         let list = _gameCtrl.getPlayerPackage();
         for (let i in list) {
-            let item : cc.Node = RES.fGetRes("Unit_Product");
-            // list[i]["cb"] = self.BuyShop.bind(self);
-            let node = item.getComponent(item.name).CreateItem(list[i]);
-            self.Scroll_Package.content.addChild(item);
+            let node = Unit_Product.show(MODULE.SHOP_UNIT, list[i]);
+            self.Scroll_Package.content.addChild(node);
         }
     }
 
@@ -74,6 +69,6 @@ export default class S_StartGame extends SceneComponent {
 
     BuyShop (event, data) : void {
         // cc.log(data)
-        this.showLayer(MODULE.BUY);
+        this.showLayer(MODULE.BUY, data);
     }
 }

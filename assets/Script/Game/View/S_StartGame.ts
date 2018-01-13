@@ -4,6 +4,7 @@ import SceneComponent from "../../Frame/view/SceneComponent";
 import { MODULE } from "../../Frame/common/Common";
 import { Emitter } from "../../Frame/ctrl/Emitter";
 import { Unit_Product } from "./Unit_Product";
+import Tip_Buy from "./Tip/Tip_Buy";
 
 
 const {ccclass, property} = cc._decorator;
@@ -32,7 +33,17 @@ export default class S_StartGame extends SceneComponent {
     start () : void {
         let self = this;
         Emitter.getInstance().on("refresh", self._refresh_package.bind(self), self);
+        Emitter.getInstance().on("update", self.updateUserData.bind(self), self);
         self._startGame();
+    }
+
+    //更新玩家数据
+    updateUserData () : void {
+        let data = GameCtrl.getInstance().fGetPlayerData();
+        this._LabelData["label_deposit"].string = data.PlayerDeposit;
+        this._LabelData["label_cash"].string = data.PlayerMoney;
+        this._LabelData["label_health"].string = data.PlayerHealth;
+        this._LabelData["label_reputation"].string = data.PlayerReputation;
     }
 
     private _startGame () : void {
@@ -55,9 +66,16 @@ export default class S_StartGame extends SceneComponent {
     //刷新背包
     _refresh_package () : void {
         let self = this;
+        self.Scroll_Package.content.removeAllChildren();
         let list = _gameCtrl.getPlayerPackage();
         for (let i in list) {
-            let node = Unit_Product.show(MODULE.SHOP_UNIT, list[i]);
+            let data = {
+                name : list[i].data.name,
+                price : list[i].data.price,
+                count : list[i].count,
+                id : list[i].data.id,
+            }
+            let node = Unit_Product.show(MODULE.SHOP_UNIT, data);
             self.Scroll_Package.content.addChild(node);
         }
     }
@@ -68,7 +86,7 @@ export default class S_StartGame extends SceneComponent {
     }
 
     BuyShop (event, data) : void {
-        // cc.log(data)
         this.showLayer(MODULE.BUY, data);
+        // Tip_Buy.show(MODULE.BUY, data);
     }
 }

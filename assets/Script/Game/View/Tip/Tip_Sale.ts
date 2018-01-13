@@ -7,7 +7,7 @@ import { RES } from "../../../Frame/common/resource";
 const {ccclass, property} = cc._decorator;
 
 @ccclass
-export default class Tip_Buy extends LayerComponent {
+export default class Tip_Sale extends LayerComponent {
     _id : number = 0;
     _canBuy : boolean = false;
     _buyCount : number = 0;

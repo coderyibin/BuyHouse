@@ -1,6 +1,6 @@
 /**
  * 该脚本为逻辑组件脚本基类，所有逻辑节点都继承该类
- * 创建于 2017/12/24
+ * Justin 创建于 2017/12/24
  */
 const {ccclass, property, executionOrder} = cc._decorator;
 import { Emitter } from "../ctrl/Emitter"
@@ -16,6 +16,8 @@ export default class BaseComponent extends cc.Component {
     ArrButton : cc.Node[] = [];
     @property(cc.Label)
     ArrLabel : cc.Label[] = [];
+    @property(cc.EditBox)
+    ArrEditsBox : cc.EditBox[] = [];
     @property(cc.Node)
     Canvas : cc.Node = null;
     // @property({
@@ -26,19 +28,17 @@ export default class BaseComponent extends cc.Component {
 
     _emitter : Emitter;
     _client : ClientData;
-    // _playerCtrl : PlayerCtrl;
-    // _gameCtrl : GameCtrl;
     _logicComponentName : string;
     _spriteFrame : {};
     _fExitFunc : Function;
     _LabelData : any;//文本对象集合
+    _EditBoxData : any;//输入框对象集合
+    _Canvas : cc.Node;//尽量使用当前
     onLoad () : void {
         cc.director.setDisplayStats(false);
         let self = this; 
         self._emitter = Emitter.getInstance();
         self._client = ClientData.getInstance();
-        // self._playerCtrl = PlayerCtrl.getInstance();
-        // self._gameCtrl = GameCtrl.getInstance();
         self._initData();
         if (self._isLogicNode()) {
             self._logicNode();
@@ -49,14 +49,17 @@ export default class BaseComponent extends cc.Component {
 
     _initUI () : void {
         let self = this;
+        this._Canvas = cc.find("Canvas");
         self._registerButton();
         self._fLabelObject();
+        self._fEditBoxObject();
     }
 
     _initData () : void {
         let self = this;
         self._fExitFunc = null;
         self._LabelData = {};
+        self._EditBoxData = {};
     }
 
     /**
@@ -75,7 +78,7 @@ export default class BaseComponent extends cc.Component {
     /**
      * 注册按钮事件
      */
-    _registerButton () : void {
+    private _registerButton () : void {
         let self = this;   
         for (let i in self.ArrButton) {
             let _node = self.ArrButton[i];
@@ -90,11 +93,29 @@ export default class BaseComponent extends cc.Component {
     /**
      * 分析文本对象
      */
-    _fLabelObject () : void {
+    private _fLabelObject () : void {
         let self = this;
         for (let i in self.ArrLabel) {
             let sName = self.ArrLabel[i].node.name;
             self._LabelData[sName] = self.ArrLabel[i];
+        }
+    }
+
+    /**
+     * 解析输入框对象
+     */
+    private _fEditBoxObject () : void { 
+        let self = this;
+        for (let i in self.ArrEditsBox) {
+            let node = self.ArrEditsBox[i].node;
+            let name = node.name;
+            let funcName = "_editBox_change_" + name;
+            if (self[funcName]) self.ArrEditsBox[i].node.on("text-changed", self[funcName].bind(self), self);
+            funcName = "_editBox_began_" + name;
+            if (self[funcName]) self.ArrEditsBox[i].node.on("editing-did-began", self[funcName].bind(self), self);
+            funcName = "_editBox_return_" + name;
+            if (self[funcName]) self.ArrEditsBox[i].node.on("editing-return", self[funcName].bind(self), self);
+            self._EditBoxData[name] = self.ArrEditsBox[i];
         }
     }
 

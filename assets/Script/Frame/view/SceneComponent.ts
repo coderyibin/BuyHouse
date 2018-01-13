@@ -1,5 +1,6 @@
 import BaseComponent from "./BaseComponent";
 import { RES } from "../common/resource";
+import LayerComponent from "./LayerComponent";
 
 const { ccclass,  property } = cc._decorator;
 
@@ -29,6 +30,7 @@ export default class SceneComponent extends BaseComponent {
     showLayer (module : string, data ?: any) : void {
         this._fAddLayerToCanvas();
         let node = RES.fGetRes(module);
+        node.getComponent(module).init(data);
         let canvas = cc.find("Canvas");
         canvas.addChild(node);        
     }

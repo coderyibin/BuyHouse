@@ -1,4 +1,6 @@
 {
     "ProductList" : 5,
-    "PlayerMoney" : 3000
+    "PlayerMoney" : 3000,
+    "PlayerHealth" : 100,
+    "PlayerReputation" : 100
 }

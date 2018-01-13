@@ -1,20 +1,28 @@
 import { UnitComponent } from "../../Frame/view/UnitComponent";
 import { RES } from "../../Frame/common/resource";
+import { GameCtrl } from "../Ctrl/GameCtrl";
 
 const { ccclass, property } = cc._decorator;
 
 @ccclass
 export class Unit_Product extends UnitComponent {
     @property({
-        tooltip : "商品名称图片",
-        type : cc.Sprite
+        tooltip : "商品名称",
+        type : cc.Label
     })
-    ProductName : cc.Sprite = null;
+    ProductName : cc.Label = null;
+
     @property ({
         tooltip : "商品价格",
-        type : cc.Node
+        type : cc.Label
     })
-    ProductPrice : cc.Node = null;
+    ProductPrice : cc.Label = null;
+
+    @property ({
+        tooltip : "商品数量",
+        type : cc.Label
+    })
+    ProductNum : cc.Label = null;
 
     onLoad () : void {
         super.onLoad();
@@ -26,14 +34,11 @@ export class Unit_Product extends UnitComponent {
 
     protected fRefresh () : void {
         let self = this;
-        self.ProductName.spriteFrame = RES.fGetRes(self._oData["path"]);
         let price : any = self._oData["price"] + "";
-        self.ProductPrice.removeAllChildren();
-        for (let i = price.length; i >= 0; i --) {
-            let node = new cc.Node();
-            let sp = node.addComponent(cc.Sprite);
-            sp.spriteFrame = RES.fGetRes(price[i]);
-            node.parent = self.ProductPrice;
+        self.ProductName.string = self._oData["name"];
+        self.ProductPrice.string = price;
+        if (self._oData["count"]) {
+            self.ProductNum.string = self._oData["count"];
         }
     }
     

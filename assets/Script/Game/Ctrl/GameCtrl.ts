@@ -17,11 +17,18 @@ import PlayerData from "../Moudle/PlayerData";
      }
 
     /**
+     * 获取玩家数据
+    */
+    fGetPlayerData () : inter_Player {
+        return PlayerData.getInstance().getPlayerData();
+    }
+
+    /**
      * 获取玩家背包数据 
     */
     getPlayerPackage (id ?: number) : any {
         if (id) {
-
+            return PlayerData.getInstance().fGetProduct(id);
         } else {
             return PlayerData.getInstance().fGetProduct();
         }
@@ -57,11 +64,13 @@ import PlayerData from "../Moudle/PlayerData";
       */
       fIsDepositToBuy (count : number, id : number) : any {
         let self = this;
-        let player = PlayerData.getInstance().Gold;
+        let Money = PlayerData.getInstance().getPlayerData().PlayerMoney;
+        let Deposit = PlayerData.getInstance().getPlayerData().PlayerDeposit;
         let money = ClientData.getInstance().fGetProductData(id).price;
         let total = count * money;
-        if (player >= total) {
-            return true;
+        cc.log("购买数量", count, "单价", money, "总价", total)
+        if (Money >= total || Deposit >= total) {//足够购买
+            return total;
         } else {
             return false;
         }
@@ -70,10 +79,11 @@ import PlayerData from "../Moudle/PlayerData";
       /**
        * 购买商品
        * @param 商品id
+       * @param 购买数量
        */
-    fBuy (id : number) : void {
+    fBuy (id : number, count : number) : void {
         let data = ClientData.getInstance().fGetProductData(id);
-        PlayerData.getInstance().fAddProduct(data.id);
+        PlayerData.getInstance().fAddProduct(data.id, count);
     }
 
     static _cCtrl : GameCtrl;

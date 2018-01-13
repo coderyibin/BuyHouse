@@ -1,6 +1,7 @@
 import ButtonClick from "./ButtonClick";
 import { Common } from "../common/Common";
 import BaseComponent from "./BaseComponent";
+import { RES } from "../common/resource";
 
 /**
  * 单元类型脚本组件
@@ -10,6 +11,19 @@ import BaseComponent from "./BaseComponent";
 
  @ccclass
  export class UnitComponent extends cc.Component {
+
+    //静态数据-接收外部传进来的数据
+    static oData : null;
+    /**
+     * 要显示的单元名称
+     * @param prefab 要显示的单元预制资源名称
+     * @param data 数据
+     */
+    public static show (prefab : string, data ?: any) : cc.Node {
+        let node = RES.fGetRes(prefab);
+        UnitComponent.oData = data;
+        return node;
+    }
 
     //单元脚本组件名称
     _sUnitCompName : string;
@@ -25,19 +39,12 @@ import BaseComponent from "./BaseComponent";
     onLoad () : void {
         // super.onLoad(); 
         let self = this;
-
+        self._oData = UnitComponent.oData;
         self._fInitUI();
     }
 
     _fInitUI () : void {
         let btn : ButtonClick = this.node.addComponent("ButtonClick");
         btn.CreateButton(this, Common.fGetObjectName(this));
-        // let name = this.fGetLogicComponentName();
-        // let _comp = cc.director.getScene().getChildByName("LogicNode").getComponent(name);
-        // _comp
-    }
-
-    public static show (parent, data ?: any) : void {
-
     }
  }

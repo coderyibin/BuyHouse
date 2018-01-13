@@ -9,12 +9,13 @@ export default class PlayerData extends Hero {
     }
 
     fAddProduct (id : number) : void {
-        let _package = this.Package;
+        let _package = this.Package || {};
         if (_package[id]) {//背包里有存在id相同的商品
 
         } else {
             _package[id] = ClientData.getInstance().fGetProductData(id);
         }
+        this.Package = _package;
     }
 
     fGetProduct (id ?: number) : any {

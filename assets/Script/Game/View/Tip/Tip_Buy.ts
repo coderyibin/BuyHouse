@@ -33,8 +33,8 @@ export default class Tip_Buy extends LayerComponent {
         let buy = ctrl.fIsDepositToBuy(count, 1);
         if (buy) {
             ctrl.fBuy(1);
-            this.fRemoveSelf();
             Emitter.getInstance().emit("refresh");
+            this.fRemoveSelf();
         } else {
             self.NotMoney.active = true;
         }

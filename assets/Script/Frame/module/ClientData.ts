@@ -68,7 +68,7 @@ export class ClientData {
         if (id) {
             for (let i in this._oProductData) {
                 if (this._oProductData[i].id == id) {
-                    return this._oProductData[i].price;
+                    return this._oProductData[i];
                 }
             }
         }

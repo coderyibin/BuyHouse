@@ -58,9 +58,9 @@ import PlayerData from "../Moudle/PlayerData";
       fIsDepositToBuy (count : number, id : number) : any {
         let self = this;
         let player = PlayerData.getInstance().Gold;
-        let money = ClientData.getInstance().fGetProductData(id);
+        let money = ClientData.getInstance().fGetProductData(id).price;
         let total = count * money;
-        if (money >= total) {
+        if (player >= total) {
             return true;
         } else {
             return false;
@@ -72,7 +72,8 @@ import PlayerData from "../Moudle/PlayerData";
        * @param 商品id
        */
     fBuy (id : number) : void {
-
+        let data = ClientData.getInstance().fGetProductData(id);
+        PlayerData.getInstance().fAddProduct(data.id);
     }
 
     static _cCtrl : GameCtrl;

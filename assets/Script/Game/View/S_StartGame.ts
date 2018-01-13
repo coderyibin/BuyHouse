@@ -3,6 +3,7 @@ import { RES } from "../../Frame/common/resource";
 import SceneComponent from "../../Frame/view/SceneComponent";
 import { MODULE } from "../../Frame/common/Common";
 import { Emitter } from "../../Frame/ctrl/Emitter";
+import { Unit_Product } from "./Unit_Product";
 
 
 const {ccclass, property} = cc._decorator;
@@ -21,7 +22,7 @@ export default class S_StartGame extends SceneComponent {
         tooltip : "背包商品列表",
         type : cc.ScrollView
     })
-    Package : cc.ScrollView = null;
+    Scroll_Package : cc.ScrollView = null;
 
     onLoad () : void {
         super.onLoad();
@@ -30,7 +31,7 @@ export default class S_StartGame extends SceneComponent {
 
     start () : void {
         let self = this;
-        Emitter.getInstance().on("refresh", self._refreshList.bind(self), self);
+        Emitter.getInstance().on("refresh", self._refresh_package.bind(self), self);
         self._startGame();
     }
 
@@ -38,30 +39,37 @@ export default class S_StartGame extends SceneComponent {
         let self = this;
         let list = _gameCtrl.fGetProductList();
         for (let i in list) {
-            let item : cc.Node = RES.fGetRes("Unit_Product");
-            list[i]["cb"] = self.BuyShop.bind(self);
-            let node = item.getComponent(item.name).CreateItem(list[i]);
-            self.Marketplace.content.addChild(item);
+            // let item : cc.Node = RES.fGetRes("Unit_Product");
+            // list[i]["cb"] = self.BuyShop.bind(self);
+            // let node = item.getComponent(item.name).CreateItem(list[i]);
+            // self.Marketplace.content.addChild(item);
+            let node = Unit_Product.show(MODULE.SHOP_UNIT, list[i]);
+            self.Marketplace.content.addChild(node);
         }
     }
 
-    _refreshList () : void {
-        cc.log("刷新")
+    //刷新市场
+    _refresh_Shop () : void {
+        let self = this;
+        self.Marketplace.content.removeAllChildren();
+        self._startGame();
+    }
+
+    //刷新背包
+    _refresh_package () : void {
         let self = this;
         let list = _gameCtrl.getPlayerPackage();
-        debugger
         for (let i in list) {
             let item : cc.Node = RES.fGetRes("Unit_Product");
             // list[i]["cb"] = self.BuyShop.bind(self);
             let node = item.getComponent(item.name).CreateItem(list[i]);
-            self.Package.content.addChild(item);
+            self.Scroll_Package.content.addChild(item);
         }
     }
 
     _tap_Compute () : void{
         let self = this;
-        self.Marketplace.content.removeAllChildren();
-        self._startGame();
+        self._refresh_Shop();
     }
 
     BuyShop (event, data) : void {

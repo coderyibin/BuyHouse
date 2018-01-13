@@ -20,6 +20,10 @@ export class Unit_Product extends UnitComponent {
         super.onLoad();
     }
 
+    start () : void {
+        this.fRefresh();
+    }
+
     protected fRefresh () : void {
         let self = this;
         self.ProductName.spriteFrame = RES.fGetRes(self._oData["path"]);
@@ -32,14 +36,7 @@ export class Unit_Product extends UnitComponent {
             node.parent = self.ProductPrice;
         }
     }
-
-    CreateItem (param : inter_Product) : Unit_Product {
-        this._oData = param;
-        this.fRefresh();
-        return this;
-    }
-
-
+    
     _tap_Unit_Product (event, data) : void {
         let d = JSON.parse(JSON.stringify(this._oData));
         if (this._oData.cb) {

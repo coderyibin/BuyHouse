@@ -10,10 +10,12 @@ import PlayerData from "../Moudle/PlayerData";
  export class GameCtrl extends BaseCtrl {
     private _oProduct : any;//商品数量
     private _refreshList : boolean;//是否刷新背包列表
+    private _nCurTime : number;//游戏时间
 
      constructor () {
          super();
          let self = this;
+         self._nCurTime = 0;
      }
 
     /**
@@ -34,9 +36,15 @@ import PlayerData from "../Moudle/PlayerData";
         }
     }
 
-     //获取商品数据
-     fGetProductList () : any {
+    //获取时间
+    fGetTime () : string {
+        return this._nCurTime + "/" + this._clientData.fGetGameConfig().GameTime;
+    }
+
+    //获取商品数据
+    fGetProductList () : any {
         let self = this;
+        self._nCurTime ++;
         self._oProduct = self._clientData.fGetProductData(); //self._clientData.fGetProductData();
         let Product = [];
         //获取商品总数
@@ -51,18 +59,34 @@ import PlayerData from "../Moudle/PlayerData";
             canRand.push(self._oProduct[i]);
         }
         Product = canRand.sort(function() {
-             return (0.5-Math.random());
+                return (0.5-Math.random());
         }).slice(0, 5);
         if (Product.length == 0) debugger
+        Product = self._fGetFloatPrice(Product);
         return Product;
-     }
+    }
 
-     /**
-      * 判断当前存款是否足够购买
-      * @param 购买的数量
-      * @param 购买的id
-      */
-      fIsDepositToBuy (count : number, id : number) : any {
+    /**
+     * 计算商品价格的浮动
+     */
+    private _fGetFloatPrice (Products : Array<any>) : any {
+        for (let i in Products) {
+            let dis = Common.fGetRandom(Products[i].minP, Products[i].maxP);
+            Products[i].price = dis;
+        }
+        return Products;
+    }
+
+    fGetProductItem (id : number) : any {
+        return this._oProduct[id] || {};
+    }
+
+    /**
+     * 判断当前存款是否足够购买
+    * @param 购买的数量
+    * @param 购买的id
+    */
+    fIsDepositToBuy (count : number, id : number) : any {
         let self = this;
         let Money = PlayerData.getInstance().getPlayerData().PlayerMoney;
         let Deposit = PlayerData.getInstance().getPlayerData().PlayerDeposit;
@@ -74,16 +98,24 @@ import PlayerData from "../Moudle/PlayerData";
         } else {
             return false;
         }
-      }
+    }
 
-      /**
-       * 购买商品
-       * @param 商品id
-       * @param 购买数量
-       */
+    /**
+     * 购买商品
+     * @param 商品id
+     * @param 购买数量
+     */
     fBuy (id : number, count : number) : void {
         let data = ClientData.getInstance().fGetProductData(id);
         PlayerData.getInstance().fAddProduct(data.id, count);
+    }
+
+    /**
+     * 卖出商品呢
+     */
+    fSale (id : number, count : number) : void {
+        let data = ClientData.getInstance().fGetProductData(id);
+        PlayerData.getInstance().fSaleProduct(data.id, count);
     }
 
     static _cCtrl : GameCtrl;

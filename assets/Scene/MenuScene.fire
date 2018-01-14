@@ -303,9 +303,9 @@
     "_opacity": 255,
     "_color": {
       "__type__": "cc.Color",
-      "r": 255,
-      "g": 255,
-      "b": 255,
+      "r": 0,
+      "g": 0,
+      "b": 0,
       "a": 255
     },
     "_cascadeOpacityEnabled": true,
@@ -316,8 +316,8 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 120,
-      "height": 35
+      "width": 160,
+      "height": 40
     },
     "_rotationX": 0,
     "_rotationY": 0,
@@ -336,30 +336,28 @@
     "groupIndex": 0
   },
   {
-    "__type__": "cc.Sprite",
+    "__type__": "cc.Label",
     "_name": "",
     "_objFlags": 0,
     "node": {
       "__id__": 6
     },
     "_enabled": true,
-    "_spriteFrame": {
-      "__uuid__": "f38f1628-33a5-475d-b958-8bde8478075e"
+    "_useOriginalSize": false,
+    "_actualFontSize": 40,
+    "_fontSize": 40,
+    "_lineHeight": 40,
+    "_enableWrapText": true,
+    "_N$file": {
+      "__uuid__": "3e163ea1-82a9-4c14-967e-2b2d9e55895a"
     },
-    "_type": 0,
-    "_sizeMode": 0,
-    "_fillType": 0,
-    "_fillCenter": {
-      "__type__": "cc.Vec2",
-      "x": 0,
-      "y": 0
-    },
-    "_fillStart": 0,
-    "_fillRange": 0,
-    "_isTrimmedMode": true,
-    "_srcBlendFactor": 770,
-    "_dstBlendFactor": 771,
-    "_atlas": null
+    "_isSystemFontUsed": false,
+    "_spacingX": 0,
+    "_N$string": "开始游戏",
+    "_N$horizontalAlign": 0,
+    "_N$verticalAlign": 0,
+    "_N$fontFamily": "Arial",
+    "_N$overflow": 0
   },
   {
     "__type__": "cc.PrefabInfo",
@@ -538,9 +536,9 @@
     "_opacity": 255,
     "_color": {
       "__type__": "cc.Color",
-      "r": 255,
-      "g": 255,
-      "b": 255,
+      "r": 0,
+      "g": 0,
+      "b": 0,
       "a": 255
     },
     "_cascadeOpacityEnabled": true,
@@ -552,7 +550,7 @@
     "_contentSize": {
       "__type__": "cc.Size",
       "width": 120,
-      "height": 35
+      "height": 40
     },
     "_rotationX": 0,
     "_rotationY": 0,
@@ -571,30 +569,28 @@
     "groupIndex": 0
   },
   {
-    "__type__": "cc.Sprite",
+    "__type__": "cc.Label",
     "_name": "",
     "_objFlags": 0,
     "node": {
       "__id__": 13
     },
     "_enabled": true,
-    "_spriteFrame": {
-      "__uuid__": "295d0a7a-9dcd-4d9f-b1a2-66a9a0d38f3d"
+    "_useOriginalSize": false,
+    "_actualFontSize": 40,
+    "_fontSize": 40,
+    "_lineHeight": 40,
+    "_enableWrapText": true,
+    "_N$file": {
+      "__uuid__": "3e163ea1-82a9-4c14-967e-2b2d9e55895a"
     },
-    "_type": 0,
-    "_sizeMode": 0,
-    "_fillType": 0,
-    "_fillCenter": {
-      "__type__": "cc.Vec2",
-      "x": 0,
-      "y": 0
-    },
-    "_fillStart": 0,
-    "_fillRange": 0,
-    "_isTrimmedMode": true,
-    "_srcBlendFactor": 770,
-    "_dstBlendFactor": 771,
-    "_atlas": null
+    "_isSystemFontUsed": false,
+    "_spacingX": 0,
+    "_N$string": "排行榜",
+    "_N$horizontalAlign": 0,
+    "_N$verticalAlign": 0,
+    "_N$fontFamily": "Arial",
+    "_N$overflow": 0
   },
   {
     "__type__": "cc.PrefabInfo",
@@ -879,6 +875,7 @@
       }
     ],
     "ArrLabel": [],
+    "ArrEditsBox": [],
     "Canvas": null
   }
 ]

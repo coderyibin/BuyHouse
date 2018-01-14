@@ -7,6 +7,7 @@ import { Base64 } from "./Base64";
  //模块定义
  export enum MODULE {
     BUY = "Tip_Buy",
+    SALE = "Tip_Sale",
     SHOP_UNIT = "Unit_Product",
  }
  //场景的名称

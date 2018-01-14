@@ -35,6 +35,7 @@ export default class S_StartGame extends SceneComponent {
         Emitter.getInstance().on("refresh", self._refresh_package.bind(self), self);
         Emitter.getInstance().on("update", self.updateUserData.bind(self), self);
         self._startGame();
+        self.updateUserData();
     }
 
     //更新玩家数据
@@ -44,6 +45,8 @@ export default class S_StartGame extends SceneComponent {
         this._LabelData["label_cash"].string = data.PlayerMoney;
         this._LabelData["label_health"].string = data.PlayerHealth;
         this._LabelData["label_reputation"].string = data.PlayerReputation;
+        this._LabelData["label_Repository"].string = data.nCurPackageCount + "/" + data.nAllPackageCount;
+        this._LabelData["Label_Medati"].string = _gameCtrl.fGetTime();
     }
 
     private _startGame () : void {
@@ -74,6 +77,7 @@ export default class S_StartGame extends SceneComponent {
                 price : list[i].data.price,
                 count : list[i].count,
                 id : list[i].data.id,
+                cb : self.SaleShop.bind(self),
             }
             let node = Unit_Product.show(MODULE.SHOP_UNIT, data);
             self.Scroll_Package.content.addChild(node);
@@ -83,10 +87,16 @@ export default class S_StartGame extends SceneComponent {
     _tap_Compute () : void{
         let self = this;
         self._refresh_Shop();
+        self.updateUserData();
     }
 
     BuyShop (event, data) : void {
         this.showLayer(MODULE.BUY, data);
         // Tip_Buy.show(MODULE.BUY, data);
+    }
+
+    SaleShop (event, data) : void {
+        this.showLayer(MODULE.SALE, data);
+        
     }
 }

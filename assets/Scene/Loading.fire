@@ -360,8 +360,8 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 68.51,
-      "height": 28
+      "width": 79.64,
+      "height": 35
     },
     "_rotationX": 0,
     "_rotationY": 0,
@@ -388,12 +388,14 @@
     },
     "_enabled": true,
     "_useOriginalSize": false,
-    "_actualFontSize": 28,
-    "_fontSize": 28,
-    "_lineHeight": 28,
+    "_actualFontSize": 35,
+    "_fontSize": 35,
+    "_lineHeight": 35,
     "_enableWrapText": true,
-    "_N$file": null,
-    "_isSystemFontUsed": true,
+    "_N$file": {
+      "__uuid__": "3e163ea1-82a9-4c14-967e-2b2d9e55895a"
+    },
+    "_isSystemFontUsed": false,
     "_spacingX": 0,
     "_N$string": "Label",
     "_N$horizontalAlign": 1,

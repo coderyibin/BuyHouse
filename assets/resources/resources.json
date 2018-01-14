@@ -15,6 +15,7 @@
     ],
     "StartGame" : [
         "StartGame/Prefab/Unit_Product",
+        "StartGame/Prefab/Tip_Sale",
         "StartGame/Prefab/Tip_Buy",
         "StartGame/shop/huangjinshipin",
         "StartGame/shop/huazhuangpin",

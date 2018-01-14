@@ -9,6 +9,7 @@
     nMax ?: number//商品最大的波动价格比例
     nMin ?: number//商品最小的波动价格比例
     sNamePath ?: string//商品图片路径
+    nLastPrice ?: number//商品上次价格
  }
 
  //资源结构
@@ -26,7 +27,9 @@
     PlayerHealth ?: number//玩家初始健康
     PlayerReputation ?: number//玩家初始名声
     PlayerDeposit ?: number//存款
- }
+    nCurPackageCount ?: number//当前背包空间
+    nAllPackageCount ?: number//总背包空间
+}
 
  interface inter_Config {
      mode ?: number;//游戏模式
@@ -37,4 +40,6 @@
      PlayerMoney ?: number//玩家初始金币
      PlayerHealth ?: number//玩家初始健康
      PlayerReputation ?: number//玩家初始名声
+     GameTime ?: number//游戏时间
+     RepositoryPrice ?: number//背包空间单价
  }

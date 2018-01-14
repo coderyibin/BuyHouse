@@ -1,5 +1,8 @@
 {
     "ProductList" : 5,
+    "GameTime" : 54,
+    "Repository" : 100,
+    "RepositoryPrice" : 10000,
     "PlayerMoney" : 3000,
     "PlayerHealth" : 100,
     "PlayerReputation" : 100

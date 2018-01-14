@@ -9,8 +9,7 @@ const {ccclass, property} = cc._decorator;
 @ccclass
 export default class Tip_Sale extends LayerComponent {
     _id : number = 0;
-    _canBuy : boolean = false;
-    _buyCount : number = 0;
+    _saleCount : number = 0;
     // _ProductTotal : number = 0;
 
     onLoad () : void {
@@ -20,7 +19,7 @@ export default class Tip_Sale extends LayerComponent {
     }
 
     initUi () : void {
-        cc.log(this._oData);
+        // cc.log(this._oData);
         this._LabelData["label_Hint"].string = "";
         this._id = this._oData.id;
         this._LabelData["ProductName"].string = this._oData.name;
@@ -28,10 +27,9 @@ export default class Tip_Sale extends LayerComponent {
 
     _tap_OK () : void {
         let self = this;
-        if (! self._canBuy) return;
-        let count : number = self._buyCount;
+        let count : number = self._saleCount;
         let ctrl = GameCtrl.getInstance();
-        ctrl.fBuy(self._id, count);
+        ctrl.fSale(this._id, count);
         Emitter.getInstance().emit("refresh");
         self.fRemoveSelf();
     }
@@ -40,22 +38,43 @@ export default class Tip_Sale extends LayerComponent {
         let self = this;
         let edit : cc.EditBox = event.detail;
         let count = parseInt(edit.string);
-        if (count <= 0) {
+        let regString = /[a-zA-Z]+/; //验证大小写26个字母任意字母最少出现1次。
+        if (regString.test(edit.string)) {
+            self._LabelData["label_Hint"].string = "请输入数字"; 
+            self._LabelData["label_Hint"].node.color = cc.Color.RED;
+            edit.string = "";
             return;
         }
-        let bool = GameCtrl.getInstance().fIsDepositToBuy(count, this._id);
-        if (! bool) {
-            self._canBuy = false;
-            self._LabelData["label_Hint"].string = "您的余额不足以购买！";
-            self._LabelData["label_Hint"].node.color = cc.Color.RED;
-        } else {
-            self._canBuy = true;
-            self._buyCount = count;
-            self._LabelData["label_Hint"].string = "需要花费" + bool;            
-            self._LabelData["label_Hint"].node.color = cc.Color.BLACK;
-            // self._ProductTotal = bool;
+        if (count <= 0 || edit.string == "") {
+            self._LabelData["label_Hint"].string = "";
+            return;
         }
-
+        let item = GameCtrl.getInstance().fGetProductItem(this._id);
+        let myitem = GameCtrl.getInstance().getPlayerPackage(this._id);
+        if (myitem.count < count) {
+            self._LabelData["label_Hint"].string = "卖出数量超过背包数量"; 
+            edit.string = edit.string.substr(0, edit.string.length - 1);            
+            return;
+        }
+        let itemPrice = item.price;
+        let myPrice = myitem.data.price
+        cc.log("当前市场价", itemPrice, "背包价格", myPrice);
+        if (itemPrice == myPrice) {
+            self._LabelData["label_Hint"].string = "等价卖出无盈利";
+            self._LabelData["label_Hint"].node.color = cc.Color.BLACK;
+        } else {
+            let storeTotal = itemPrice * count;
+            let myTotal = myPrice * count;
+            let disparity = Math.abs(storeTotal - myTotal);
+            if (itemPrice < myPrice) {
+                self._LabelData["label_Hint"].string = "卖出亏" + disparity; 
+                self._LabelData["label_Hint"].node.color = cc.Color.RED;
+            } else {
+                self._LabelData["label_Hint"].string = "卖出盈利" + disparity;
+                self._LabelData["label_Hint"].node.color = cc.Color.BLACK;
+            }
+        }
+        self._saleCount = count;
     }
     
     _tap_Cancel () : void {

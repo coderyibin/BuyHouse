@@ -34,9 +34,17 @@ export class ClientData {
     // }
 
     init () : void {
-        cc["Product"] = cc["RES"].Res.global.Product;
-        this._oProductData = cc["Product"];
+        cc["Product"] = JSON.parse(JSON.stringify(cc["RES"].Res.global.Product));
+        this._oProductData = cc["RES"].Res.global.Product;
         delete cc["RES"].Res.global.Product;
+        this._oGameConfig = cc["RES"].Res.global.Config;
+    }
+
+    /**
+     * 获取商品原始价格
+     */
+    fGetProductOriginal (id) : number {
+        return cc["Product"][id].price;
     }
 
     /**设置游戏配置

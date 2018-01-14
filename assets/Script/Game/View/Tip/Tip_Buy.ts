@@ -40,7 +40,15 @@ export default class Tip_Buy extends LayerComponent {
         let self = this;
         let edit : cc.EditBox = event.detail;
         let count = parseInt(edit.string);
-        if (count <= 0) {
+        let regString = /[a-zA-Z]+/; //验证大小写26个字母任意字母最少出现1次。
+        if (regString.test(edit.string)) {
+            self._LabelData["label_Hint"].string = "请输入数字"; 
+            self._LabelData["label_Hint"].node.color = cc.Color.RED;
+            edit.string = "";
+            return;
+        }
+        if (count <= 0 || edit.string == "") {
+            self._LabelData["label_Hint"].string = "";             
             return;
         }
         let bool = GameCtrl.getInstance().fIsDepositToBuy(count, this._id);

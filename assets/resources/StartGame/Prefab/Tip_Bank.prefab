@@ -10,7 +10,7 @@
   },
   {
     "__type__": "cc.Node",
-    "_name": "Tip_Financial",
+    "_name": "Tip_Bank",
     "_objFlags": 0,
     "_parent": null,
     "_children": [

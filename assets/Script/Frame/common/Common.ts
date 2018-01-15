@@ -9,6 +9,9 @@ import { Base64 } from "./Base64";
     BUY = "Tip_Buy",
     SALE = "Tip_Sale",
     SHOP_UNIT = "Unit_Product",
+    EXPAND = "Tip_Expand",
+    FINANCIAL = "Tip_Financial",
+    HOSPITAL = "Tip_Hospital",
  }
  //场景的名称
  export enum SCENE_NAME {

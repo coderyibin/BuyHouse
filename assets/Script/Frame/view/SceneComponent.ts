@@ -30,9 +30,14 @@ export default class SceneComponent extends BaseComponent {
     showLayer (module : string, data ?: any) : void {
         this._fAddLayerToCanvas();
         let node = RES.fGetRes(module);
-        node.getComponent(module).init(data);
-        let canvas = cc.find("Canvas");
-        canvas.addChild(node);        
+        let comp = node.getComponent(module);
+        if (comp) {
+            node.getComponent(module).init(data);
+            let canvas = cc.find("Canvas");
+            canvas.addChild(node);    
+        } else {
+            cc.warn("未创建脚本组件", module);
+        }
     }
 
     /**

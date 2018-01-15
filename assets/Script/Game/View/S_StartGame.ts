@@ -90,6 +90,32 @@ export default class S_StartGame extends SceneComponent {
         self.updateUserData();
     }
 
+    _tap_RepositoryExpand (event, data) : void {
+        this.showLayer(MODULE.EXPAND);        
+    }
+
+    _tap_Bank () : void {
+        this.showLayer(MODULE.FINANCIAL);        
+
+    }
+
+    _tap_Help () : void {
+
+    }
+
+    _tap_Again () : void {
+
+    }
+
+    _tap_BuyHouse () : void {
+        
+    }
+
+    _tap_HosPital () : void {
+        this.showLayer(MODULE.HOSPITAL);        
+
+    }
+
     BuyShop (event, data) : void {
         this.showLayer(MODULE.BUY, data);
         // Tip_Buy.show(MODULE.BUY, data);

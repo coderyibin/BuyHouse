@@ -15,7 +15,7 @@
     ],
     "StartGame" : [
         "StartGame/Prefab/Tip_Expand",
-        "StartGame/Prefab/Tip_Financial",
+        "StartGame/Prefab/Tip_Bank",
         "StartGame/Prefab/Tip_Hospital",
         "StartGame/Prefab/Unit_Product",
         "StartGame/Prefab/Tip_Sale",

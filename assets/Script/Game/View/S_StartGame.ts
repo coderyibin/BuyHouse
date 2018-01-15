@@ -95,7 +95,7 @@ export default class S_StartGame extends SceneComponent {
     }
 
     _tap_Bank () : void {
-        this.showLayer(MODULE.FINANCIAL);        
+        this.showLayer(MODULE.BANK);        
 
     }
 
@@ -108,7 +108,7 @@ export default class S_StartGame extends SceneComponent {
     }
 
     _tap_BuyHouse () : void {
-        
+
     }
 
     _tap_HosPital () : void {

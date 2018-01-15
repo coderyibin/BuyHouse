@@ -20,9 +20,13 @@
     ],
     "_tag": -1,
     "_active": true,
-    "_components": [],
+    "_components": [
+      {
+        "__id__": 32
+      }
+    ],
     "_prefab": {
-      "__id__": 32
+      "__id__": 33
     },
     "_id": "",
     "_opacity": 255,
@@ -404,7 +408,7 @@
   },
   {
     "__type__": "cc.Node",
-    "_name": "button",
+    "_name": "Deposit",
     "_objFlags": 0,
     "_parent": {
       "__id__": 2
@@ -588,7 +592,7 @@
   },
   {
     "__type__": "cc.Node",
-    "_name": "button",
+    "_name": "Withdrawal",
     "_objFlags": 0,
     "_parent": {
       "__id__": 2
@@ -990,6 +994,29 @@
     },
     "fileId": "99o9XJgfpAxLHjAp7TNc1J",
     "sync": false
+  },
+  {
+    "__type__": "bf86clJyS5B6qTfqpQiHP4v",
+    "_name": "",
+    "_objFlags": 0,
+    "node": {
+      "__id__": 1
+    },
+    "_enabled": true,
+    "ArrButton": [
+      {
+        "__id__": 12
+      },
+      {
+        "__id__": 18
+      },
+      {
+        "__id__": 24
+      }
+    ],
+    "ArrLabel": [],
+    "ArrEditsBox": [],
+    "Canvas": null
   },
   {
     "__type__": "cc.PrefabInfo",

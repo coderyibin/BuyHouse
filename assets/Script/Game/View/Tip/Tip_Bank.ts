@@ -20,15 +20,17 @@ export default class Tip_Sale extends LayerComponent {
 
     initUi () : void {
         // cc.log(this._oData);
-        this._LabelData["label_Hint"].string = "";
-        this._id = this._oData.id;
     }
 
-    _tap_OK () : void {
+    _tap_Deposit () : void {
         let self = this;
     }
 
-    _tap_Cancel () : void {
+    _tap_Withdrawal () : void {
+
+    }
+
+    _tap_btn_Leave () : void {
         this.fRemoveSelf();
     }
 }

@@ -10,7 +10,7 @@ import { Base64 } from "./Base64";
     SALE = "Tip_Sale",
     SHOP_UNIT = "Unit_Product",
     EXPAND = "Tip_Expand",
-    FINANCIAL = "Tip_Financial",
+    BANK = "Tip_Bank",
     HOSPITAL = "Tip_Hospital",
  }
  //场景的名称

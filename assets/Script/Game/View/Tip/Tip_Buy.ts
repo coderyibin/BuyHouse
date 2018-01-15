@@ -22,8 +22,8 @@ export default class Tip_Buy extends LayerComponent {
     initUi () : void {
         cc.log(this._oData);
         this._LabelData["label_Hint"].string = "";
-        this._id = this._oData.id;
-        this._LabelData["ProductName"].string = this._oData.name;
+        this._id = this._oData.id || null;
+        this._LabelData["ProductName"].string = this._oData.name || null;
     }
 
     _tap_OK () : void {

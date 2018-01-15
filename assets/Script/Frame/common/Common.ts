@@ -103,4 +103,12 @@ import { Base64 } from "./Base64";
         name = name.slice(index + 1, name.length - 1);
         return name;
     }
+
+    /**
+     * 字符串包含字母
+     */
+    static StringHasLetter (str : string) : boolean {
+        let regString = /[a-zA-Z]+/; //验证大小写26个字母任意字母最少出现1次。
+        return regString.test(str);//true:包含
+    }
  }

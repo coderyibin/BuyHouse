@@ -129,6 +129,16 @@ export default class BaseComponent extends cc.Component {
     }
 
     /**
+     * 设置label属性
+     */
+    setLabel (data : any) : cc.Label {
+        let label : cc.Label = data.label || new cc.Label;
+        if (data.color) label.color = data.color; 
+        if (data.string) label.string = data.string; 
+        return label;
+    }
+
+    /**
      * 获取当前场景大小
      * @return 场景大小尺寸
      */

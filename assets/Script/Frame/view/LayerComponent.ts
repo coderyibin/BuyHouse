@@ -51,4 +51,11 @@ export default class LayerComponent extends BaseComponent {
         cc.find("Canvas/shield").destroy();
         this.node.destroy();
     }
+    removeSelf () : void {
+        this.fRemoveSelf();
+    }
+
+    _tap_Cancel () : void {
+        this.fRemoveSelf();
+    }
 }

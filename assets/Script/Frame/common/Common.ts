@@ -12,6 +12,10 @@ import { Base64 } from "./Base64";
     EXPAND = "Tip_Expand",
     BANK = "Tip_Bank",
     HOSPITAL = "Tip_Hospital",
+    HELP = "Layer_Help",
+    AGAIN = "Tip_Again",
+    BUYHOUSE = "Tip_BuyHouse",
+    OVER = "Tip_GameOver",
  }
  //场景的名称
  export enum SCENE_NAME {
@@ -20,10 +24,23 @@ import { Base64 } from "./Base64";
      OVER_SCENE = "GameOver"
  }
 
+ //游戏结束方式
+ export enum OVER_TYPE {
+     BUY,
+     TIMEOUT,
+     DIE
+ }
+
  //交易类型
  export enum TRADE_TYPE {
      BUY,//买入
      SALE//卖出
+ }
+
+ //财务类型
+ export enum BANK {
+    DEPOSIT,//存款
+    WITHDRAWALS
  }
 
  //数据保存本地的key配置

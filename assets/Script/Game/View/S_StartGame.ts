@@ -1,7 +1,7 @@
 import { GameCtrl } from "../Ctrl/GameCtrl";
 import { RES } from "../../Frame/common/resource";
 import SceneComponent from "../../Frame/view/SceneComponent";
-import { MODULE } from "../../Frame/common/Common";
+import { MODULE, OVER_TYPE } from "../../Frame/common/Common";
 import { Emitter } from "../../Frame/ctrl/Emitter";
 import { Unit_Product } from "./Unit_Product";
 import Tip_Buy from "./Tip/Tip_Buy";
@@ -43,9 +43,9 @@ export default class S_StartGame extends SceneComponent {
         let data = GameCtrl.getInstance().fGetPlayerData();
         this._LabelData["label_deposit"].string = data.PlayerDeposit;
         this._LabelData["label_cash"].string = data.PlayerMoney;
-        this._LabelData["label_health"].string = data.PlayerHealth;
+        this._LabelData["label_health"].string = data.PlayerCurHealth;
         this._LabelData["label_reputation"].string = data.PlayerReputation;
-        this._LabelData["label_Repository"].string = data.nCurPackageCount + "/" + data.nAllPackageCount;
+        this._LabelData["label_Repository"].string = (data.nAllPackageCount - data.nCurPackageCount) + "/" + data.nAllPackageCount;
         this._LabelData["Label_Medati"].string = _gameCtrl.fGetTime();
     }
 
@@ -86,8 +86,16 @@ export default class S_StartGame extends SceneComponent {
 
     _tap_Compute () : void{
         let self = this;
+        GameCtrl.getInstance().fGameOver((type : OVER_TYPE)=>{
+            self._gameOver(type);
+        });
         self._refresh_Shop();
         self.updateUserData();
+    }
+
+    //游戏结束
+    private _gameOver (type : OVER_TYPE) : void {
+        this.showLayer(MODULE.OVER);
     }
 
     _tap_RepositoryExpand (event, data) : void {
@@ -96,24 +104,22 @@ export default class S_StartGame extends SceneComponent {
 
     _tap_Bank () : void {
         this.showLayer(MODULE.BANK);        
-
     }
 
     _tap_Help () : void {
-
+        this.showLayer(MODULE.HELP);        
     }
 
     _tap_Again () : void {
-
+        this.showLayer(MODULE.AGAIN);        
     }
 
     _tap_BuyHouse () : void {
-
+        this.showLayer(MODULE.BUYHOUSE);        
     }
 
     _tap_HosPital () : void {
         this.showLayer(MODULE.HOSPITAL);        
-
     }
 
     BuyShop (event, data) : void {

@@ -6,7 +6,7 @@
         "path" : "qiche",
         "max" : 1.8,
         "min" : 0.2,
-        "maxP" : 35400,
+        "maxP" : 45200,
         "minP" : 9850
     },
     "2" : {
@@ -41,7 +41,7 @@
     },
     "5" : {
         "id" : 5,
-        "name" : "转基因青菜",
+        "name" : "转基因豆",
         "path" : "zhuanjiyinqingcai",
         "price" : 75,
         "max" : 2.0,

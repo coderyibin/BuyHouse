@@ -1,6 +1,7 @@
 import Hero from "../../Frame/module/Hero";
 import { ClientData } from "../../Frame/module/ClientData";
 import { Emitter } from "../../Frame/ctrl/Emitter";
+import { BANK } from "../../Frame/common/Common";
 
 export default class PlayerData extends Hero {
     _oData : inter_Player;
@@ -8,7 +9,7 @@ export default class PlayerData extends Hero {
     init () : void {
         this._oData = this._oData || {};
         this._oData.PlayerMoney = cc["RES"]["Res"]["global"]["Config"].PlayerMoney;
-        this._oData.PlayerHealth = cc["RES"]["Res"]["global"]["Config"].PlayerHealth;
+        this._oData.PlayerCurHealth = this._oData.PlayerHealth = cc["RES"]["Res"]["global"]["Config"].PlayerHealth;
         this._oData.PlayerReputation = cc["RES"]["Res"]["global"]["Config"].PlayerReputation;
         this._oData.nAllPackageCount = cc["RES"]["Res"]["global"]["Config"].Repository;
         this._oData.nCurPackageCount = cc["RES"]["Res"]["global"]["Config"].Repository;
@@ -18,6 +19,18 @@ export default class PlayerData extends Hero {
         delete cc["RES"]["Res"]["global"]["Config"].PlayerReputation;
         delete cc["RES"]["Res"]["global"]["Config"].PlayerDeposit;
         delete cc["RES"]["Res"]["global"]["Config"].Repository;
+    }
+
+    //存取款
+    fTheDeposit (type : BANK) : void {
+        if (type == BANK.DEPOSIT) {
+            this._oData.PlayerDeposit += this._oData.PlayerMoney;
+            this._oData.PlayerMoney = 0;
+        } else {
+            this._oData.PlayerMoney += this._oData.PlayerDeposit;
+            this._oData.PlayerDeposit = 0;
+        }
+        Emitter.getInstance().emit("update");
     }
 
     getPlayerData () : inter_Player {
@@ -73,8 +86,25 @@ export default class PlayerData extends Hero {
         Emitter.getInstance().emit("update");
     }
 
+    /**
+     * 金钱结算
+     * @param 金额 负数-减去
+     */
+    private _moneySettle (count : number) {
+        let num = Math.abs(count);
+        if (this._oData.PlayerMoney >= num) {
+            this._oData.PlayerMoney += count;
+        } else {
+            this._oData.PlayerDeposit += count;
+        }
+    }
+
+    MoneySettle (count : number) : void {
+        this._moneySettle(count);
+    }
+
     private _packageSpace (count : number) : void {
-        this._oData.Repository -= count;
+        this._oData.nCurPackageCount -= count;
     }
 
     fGetProduct (id ?: number) : any {

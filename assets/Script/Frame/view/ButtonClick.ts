@@ -10,6 +10,12 @@ export default class ButtonClick extends cc.Button {
     private _Comp : cc.Component = null;
 
     onLoad () : void {  
+        //禁用模式
+        let frame = this.normalSprite;
+        this.disabledSprite = frame;
+        this.disabledColor = cc.Color.GRAY;
+        this.transition = cc.Button.Transition.SPRITE;
+        this.enableAutoGrayEffect = true;
     }
 
     /**

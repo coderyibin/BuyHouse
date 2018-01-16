@@ -56,7 +56,7 @@ class ModuleMvc:
         print(u'你的控制器类名是' + self.m_ctrl_cls_name + u'文件路径是' + self.m_ctrl_lua_path);
         self.create_ctrl_code();
         print(u'生成成功,请查看')
-        os.system('explorer.exe ' + os.path.dirname(os.path.abspath(self.m_dir)));
+        #os.system('explorer.exe ' + os.path.dirname(os.path.abspath(self.m_dir)));
         exit();
 
     def create_ctrl_code(self):

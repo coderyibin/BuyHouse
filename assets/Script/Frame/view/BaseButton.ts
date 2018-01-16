@@ -32,8 +32,19 @@ export class BaseButton extends cc.Button {
         }
     }
 
+    // /**
+    //  * 添加按钮点击事件
+    //  */
+    // JoinBtnEvent (name : string, btn : cc.Button, data ?: any) : void {
+    //     btn.node.on(cc.Node.EventType.TOUCH_END, (event)=>{
+    //         if (self.) {
+
+    //         }
+    //     }, this);
+    // }
+
     /**
-     * 添加按钮点击事件
+     * 添加按钮点击事件(cocos creator)
      * @param name 点击事件的名称
      * @param btn 点击事件绑定的按钮
      * @param data 自定义数据 选填

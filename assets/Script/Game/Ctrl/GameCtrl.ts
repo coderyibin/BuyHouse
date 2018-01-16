@@ -1,5 +1,5 @@
 import { BaseCtrl } from "../../Frame/ctrl/BaseCtrl";
-import { Common } from "../../Frame/common/Common";
+import { Common, BANK, OVER_TYPE } from "../../Frame/common/Common";
 import { ClientData } from "../../Frame/module/ClientData";
 import PlayerData from "../Moudle/PlayerData";
 
@@ -16,7 +16,46 @@ import PlayerData from "../Moudle/PlayerData";
          super();
          let self = this;
          self._nCurTime = 0;
-     }
+    }
+
+    /**
+     * 玩家存取款
+     */
+    fThedeposit (type : BANK) : void {
+        PlayerData.getInstance().fTheDeposit(type);
+    }
+
+    /**
+     * 判断是否需要医院
+     */
+    fIsGotoHospistal () : any {
+        let player : inter_Player = this.fGetPlayerData();
+        let health = player.PlayerCurHealth;
+        let allHealth = player.PlayerHealth;
+        let money = player.PlayerMoney;//现金
+        let Deposit = player.PlayerDeposit;//存款
+        let Health = this._clientData.fGetGameConfig().BaseHealth;//健康基数
+        let disp : number = (allHealth - health) * Health;
+        let is : boolean = true;
+        if (disp > money + Deposit) {//治疗不起
+            return { money : disp, is : true};
+        } else if (disp == 0) {//不用治疗
+            return;
+        } else {
+            return disp;
+        }
+    }
+
+    /**
+     * 治疗
+     * @param 需要花费的费用
+     */
+    fGoTreatment (disp : number) : void {
+        let player : inter_Player = this.fGetPlayerData();
+        let money = player.PlayerMoney;//现金
+        let Deposit = player.PlayerDeposit;//存款
+        PlayerData.getInstance().MoneySettle(disp);
+    }
 
     /**
      * 获取玩家数据
@@ -116,6 +155,19 @@ import PlayerData from "../Moudle/PlayerData";
     fSale (id : number, count : number) : void {
         let data = ClientData.getInstance().fGetProductData(id);
         PlayerData.getInstance().fSaleProduct(data.id, count);
+    }
+
+    /**
+     * 游戏结束
+     */
+    fGameOver (cb : Function) : void {
+        if (this._nCurTime >= this._clientData.fGetGameConfig().GameTime) {
+            cb(OVER_TYPE.TIMEOUT);
+        } else if (PlayerData.getInstance().getPlayerData().PlayerCurHealth <= this._clientData.fGetGameConfig().MinHealth) {
+            cb(OVER_TYPE.DIE);
+        } else {
+            cb(OVER_TYPE.BUY);
+        }
     }
 
     static _cCtrl : GameCtrl;

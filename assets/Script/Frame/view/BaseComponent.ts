@@ -31,6 +31,7 @@ export default class BaseComponent extends cc.Component {
     _logicComponentName : string;
     _spriteFrame : {};
     _fExitFunc : Function;
+    _ButtonData : any;//按钮对象集合
     _LabelData : any;//文本对象集合
     _EditBoxData : any;//输入框对象集合
     _Canvas : cc.Node;//尽量使用当前
@@ -60,6 +61,7 @@ export default class BaseComponent extends cc.Component {
         self._fExitFunc = null;
         self._LabelData = {};
         self._EditBoxData = {};
+        self._ButtonData = {};
     }
 
     /**
@@ -87,6 +89,7 @@ export default class BaseComponent extends cc.Component {
                 _btn = _node.addComponent("ButtonClick");
             }
             _btn.CreateButton(self, _node.name);
+            self._ButtonData[_node.name] = _btn;
         }
     }
 
@@ -133,7 +136,7 @@ export default class BaseComponent extends cc.Component {
      */
     setLabel (data : any) : cc.Label {
         let label : cc.Label = data.label || new cc.Label;
-        if (data.color) label.color = data.color; 
+        if (data.color) label.node.color = data.color; 
         if (data.string) label.string = data.string; 
         return label;
     }

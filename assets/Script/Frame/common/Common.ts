@@ -140,9 +140,11 @@ import { Base64 } from "./Base64";
      * @return 换算后的结果
      */
     static UnitConversion (num : number) : any {
-        let snum = num + "";
+        let snum = Math.floor(num) + "";
         if (snum.length > 4) {
             snum = snum.substr(0, snum.length - 4) + "万";
+        } else if (snum.length > 8) {
+            snum = snum.substr(0, snum.length - 8) + "亿";
         }
         return snum;
     } 

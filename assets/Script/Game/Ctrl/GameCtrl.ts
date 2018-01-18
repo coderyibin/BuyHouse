@@ -110,11 +110,11 @@ import { Emitter } from "../../Frame/ctrl/Emitter";
 
     //获取当前选择的房子的房价
     fGetTargetHousePrice () : string {
-        // let house : number = Common.fGetRandom(10, 30) / 100;
-        let house : number = Common.fGetRandom(4000, 30000);
+        let house : number = Common.fGetRandom(6, 18) / 1000;
+        // let house : number = Common.fGetRandom(4000, 30000);
         let arrPrice = this._clientData.fGetHousePriceData();
         for (let i in arrPrice) {
-            arrPrice[i].nPrice += house;
+            arrPrice[i].nPrice += house * arrPrice[i].nPrice;
         }
         let hprice = this._clientData.fGetBuyTarget(this._nDefault);//选择的房子的房价
         // hprice *= 0.2;

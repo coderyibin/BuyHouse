@@ -23,9 +23,13 @@
     ],
     "_tag": -1,
     "_active": true,
-    "_components": [],
+    "_components": [
+      {
+        "__id__": 39
+      }
+    ],
     "_prefab": {
-      "__id__": 39
+      "__id__": 40
     },
     "_id": "",
     "_opacity": 255,
@@ -53,8 +57,8 @@
     "_scaleY": 1,
     "_position": {
       "__type__": "cc.Vec2",
-      "x": 0,
-      "y": 0
+      "x": -375,
+      "y": -1334
     },
     "_skewX": 0,
     "_skewY": 0,
@@ -335,7 +339,7 @@
   },
   {
     "__type__": "cc.Node",
-    "_name": "content",
+    "_name": "_list_House",
     "_objFlags": 0,
     "_parent": {
       "__id__": 7
@@ -1004,7 +1008,7 @@
   },
   {
     "__type__": "cc.Node",
-    "_name": "medati",
+    "_name": "Btn_Buy",
     "_objFlags": 0,
     "_parent": {
       "__id__": 21
@@ -1093,7 +1097,7 @@
   },
   {
     "__type__": "cc.Node",
-    "_name": "medati",
+    "_name": "Btn_Cancel",
     "_objFlags": 0,
     "_parent": {
       "__id__": 21
@@ -1201,6 +1205,30 @@
     },
     "fileId": "52bEFI4U9B27bot+CZk2Js",
     "sync": false
+  },
+  {
+    "__type__": "57f05EbWqRMMoCgHoO3fh1v",
+    "_name": "",
+    "_objFlags": 0,
+    "node": {
+      "__id__": 1
+    },
+    "_enabled": true,
+    "ArrButton": [
+      {
+        "__id__": 31
+      },
+      {
+        "__id__": 34
+      }
+    ],
+    "ArrLabel": [
+      {
+        "__id__": 29
+      }
+    ],
+    "ArrEditsBox": [],
+    "Canvas": null
   },
   {
     "__type__": "cc.PrefabInfo",

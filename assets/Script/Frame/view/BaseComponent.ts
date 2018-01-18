@@ -13,6 +13,8 @@ import ButtonClick from "./ButtonClick";
 @executionOrder(0)
 export default class BaseComponent extends cc.Component {
     @property(cc.Node)
+    ArrScrollView : cc.ScrollView[] = [];
+    @property(cc.Node)
     ArrButton : cc.Node[] = [];
     @property(cc.Label)
     ArrLabel : cc.Label[] = [];
@@ -31,6 +33,7 @@ export default class BaseComponent extends cc.Component {
     _logicComponentName : string;
     _spriteFrame : {};
     _fExitFunc : Function;
+    _ScrollData : any;//滚动视图对象集合
     _ButtonData : any;//按钮对象集合
     _LabelData : any;//文本对象集合
     _EditBoxData : any;//输入框对象集合
@@ -48,11 +51,19 @@ export default class BaseComponent extends cc.Component {
         self._initUI();
     }
 
+    start () : void {
+        let list = this._ScrollData;
+        for (let i in list) {
+
+        }
+    }
+
     _initUI () : void {
         let self = this;
         this._Canvas = cc.find("Canvas");
         self._registerButton();
         self._fLabelObject();
+        self._fEditBoxObject();
         self._fEditBoxObject();
     }
 
@@ -62,6 +73,7 @@ export default class BaseComponent extends cc.Component {
         self._LabelData = {};
         self._EditBoxData = {};
         self._ButtonData = {};
+        self._ScrollData = {};
     }
 
     /**
@@ -120,6 +132,17 @@ export default class BaseComponent extends cc.Component {
             if (self[funcName]) self.ArrEditsBox[i].node.on("editing-return", self[funcName].bind(self), self);
             self._EditBoxData[name] = self.ArrEditsBox[i];
         }
+    }
+
+    /**
+     * 解析滚动视图对象
+     */
+    private _fScrollViewObject () : void {
+        let self = this;
+        for (let i in self.ArrScrollView) {
+            let name = self.ArrScrollView[i].node.name;
+            self._ScrollData[name] = self.ArrScrollView[i];
+        }        
     }
 
     /**

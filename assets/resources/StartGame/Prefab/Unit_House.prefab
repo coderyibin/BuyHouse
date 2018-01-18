@@ -1,136 +1,43 @@
 [
   {
-    "__type__": "cc.SceneAsset",
+    "__type__": "cc.Prefab",
     "_name": "",
     "_objFlags": 0,
     "_rawFiles": null,
-    "scene": {
+    "data": {
       "__id__": 1
     }
   },
   {
-    "__type__": "cc.Scene",
+    "__type__": "cc.Node",
+    "_name": "Unit_House",
     "_objFlags": 0,
     "_parent": null,
     "_children": [
       {
         "__id__": 2
-      }
-    ],
-    "_tag": -1,
-    "_active": true,
-    "_components": [],
-    "_prefab": null,
-    "_id": "7491f541-dc69-4539-aaf4-07c646597a4e",
-    "_opacity": 255,
-    "_color": {
-      "__type__": "cc.Color",
-      "r": 255,
-      "g": 255,
-      "b": 255,
-      "a": 255
-    },
-    "_cascadeOpacityEnabled": true,
-    "_anchorPoint": {
-      "__type__": "cc.Vec2",
-      "x": 0,
-      "y": 0
-    },
-    "_contentSize": {
-      "__type__": "cc.Size",
-      "width": 0,
-      "height": 0
-    },
-    "_localZOrder": 0,
-    "_globalZOrder": 0,
-    "_opacityModifyRGB": false,
-    "groupIndex": 0,
-    "autoReleaseAssets": null
-  },
-  {
-    "__type__": "cc.Node",
-    "_name": "Canvas",
-    "_objFlags": 0,
-    "_parent": {
-      "__id__": 1
-    },
-    "_children": [
+      },
       {
-        "__id__": 3
+        "__id__": 5
+      },
+      {
+        "__id__": 8
+      },
+      {
+        "__id__": 11
       }
     ],
     "_tag": -1,
     "_active": true,
     "_components": [
       {
-        "__id__": 17
+        "__id__": 14
       }
     ],
-    "_prefab": null,
-    "_id": "63j4IUS7BDKbT9QJVhqGxv",
-    "_opacity": 255,
-    "_color": {
-      "__type__": "cc.Color",
-      "r": 255,
-      "g": 255,
-      "b": 255,
-      "a": 255
-    },
-    "_cascadeOpacityEnabled": true,
-    "_anchorPoint": {
-      "__type__": "cc.Vec2",
-      "x": 0.5,
-      "y": 0.5
-    },
-    "_contentSize": {
-      "__type__": "cc.Size",
-      "width": 750,
-      "height": 1334
-    },
-    "_rotationX": 0,
-    "_rotationY": 0,
-    "_scaleX": 1,
-    "_scaleY": 1,
-    "_position": {
-      "__type__": "cc.Vec2",
-      "x": 375,
-      "y": 667
-    },
-    "_skewX": 0,
-    "_skewY": 0,
-    "_localZOrder": 0,
-    "_globalZOrder": 0,
-    "_opacityModifyRGB": false,
-    "groupIndex": 0
-  },
-  {
-    "__type__": "cc.Node",
-    "_name": "Unit_House",
-    "_objFlags": 0,
-    "_parent": {
-      "__id__": 2
-    },
-    "_children": [
-      {
-        "__id__": 4
-      },
-      {
-        "__id__": 7
-      },
-      {
-        "__id__": 10
-      },
-      {
-        "__id__": 13
-      }
-    ],
-    "_tag": -1,
-    "_active": true,
-    "_components": [],
     "_prefab": {
-      "__id__": 16
+      "__id__": 15
     },
-    "_id": "afyNGGxLJIjqRWb3OAiQYe",
+    "_id": "",
     "_opacity": 255,
     "_color": {
       "__type__": "cc.Color",
@@ -171,20 +78,20 @@
     "_name": "New Sprite(Splash)",
     "_objFlags": 0,
     "_parent": {
-      "__id__": 3
+      "__id__": 1
     },
     "_children": [],
     "_tag": -1,
     "_active": true,
     "_components": [
       {
-        "__id__": 5
+        "__id__": 3
       }
     ],
     "_prefab": {
-      "__id__": 6
+      "__id__": 4
     },
-    "_id": "48SxGGMNtPjK5HippoyI37",
+    "_id": "",
     "_opacity": 255,
     "_color": {
       "__type__": "cc.Color",
@@ -225,7 +132,7 @@
     "_name": "",
     "_objFlags": 0,
     "node": {
-      "__id__": 4
+      "__id__": 2
     },
     "_enabled": true,
     "_spriteFrame": {
@@ -249,7 +156,7 @@
   {
     "__type__": "cc.PrefabInfo",
     "root": {
-      "__id__": 3
+      "__id__": 1
     },
     "asset": {
       "__uuid__": "ae073750-ace9-4de9-a19e-881434572784"
@@ -262,20 +169,20 @@
     "_name": "img_HouseFrame",
     "_objFlags": 0,
     "_parent": {
-      "__id__": 3
+      "__id__": 1
     },
     "_children": [],
     "_tag": -1,
     "_active": true,
     "_components": [
       {
-        "__id__": 8
+        "__id__": 6
       }
     ],
     "_prefab": {
-      "__id__": 9
+      "__id__": 7
     },
-    "_id": "24fseB+RBONZGEROcAFNBd",
+    "_id": "",
     "_opacity": 255,
     "_color": {
       "__type__": "cc.Color",
@@ -316,7 +223,7 @@
     "_name": "",
     "_objFlags": 0,
     "node": {
-      "__id__": 7
+      "__id__": 5
     },
     "_enabled": true,
     "_spriteFrame": {
@@ -340,7 +247,7 @@
   {
     "__type__": "cc.PrefabInfo",
     "root": {
-      "__id__": 3
+      "__id__": 1
     },
     "asset": {
       "__uuid__": "ae073750-ace9-4de9-a19e-881434572784"
@@ -353,20 +260,20 @@
     "_name": "label_HouseName",
     "_objFlags": 0,
     "_parent": {
-      "__id__": 3
+      "__id__": 1
     },
     "_children": [],
     "_tag": -1,
     "_active": true,
     "_components": [
       {
-        "__id__": 11
+        "__id__": 9
       }
     ],
     "_prefab": {
-      "__id__": 12
+      "__id__": 10
     },
-    "_id": "21Dr1ibnxJ+pEfhqOuRCdK",
+    "_id": "",
     "_opacity": 255,
     "_color": {
       "__type__": "cc.Color",
@@ -407,7 +314,7 @@
     "_name": "",
     "_objFlags": 0,
     "node": {
-      "__id__": 10
+      "__id__": 8
     },
     "_enabled": true,
     "_useOriginalSize": false,
@@ -429,7 +336,7 @@
   {
     "__type__": "cc.PrefabInfo",
     "root": {
-      "__id__": 3
+      "__id__": 1
     },
     "asset": {
       "__uuid__": "ae073750-ace9-4de9-a19e-881434572784"
@@ -442,20 +349,20 @@
     "_name": "label_HouseDetail",
     "_objFlags": 0,
     "_parent": {
-      "__id__": 3
+      "__id__": 1
     },
     "_children": [],
     "_tag": -1,
     "_active": true,
     "_components": [
       {
-        "__id__": 14
+        "__id__": 12
       }
     ],
     "_prefab": {
-      "__id__": 15
+      "__id__": 13
     },
-    "_id": "c6zT2cJcZK/a/jKATEGGUW",
+    "_id": "",
     "_opacity": 255,
     "_color": {
       "__type__": "cc.Color",
@@ -496,7 +403,7 @@
     "_name": "",
     "_objFlags": 0,
     "node": {
-      "__id__": 13
+      "__id__": 11
     },
     "_enabled": true,
     "_useOriginalSize": false,
@@ -518,7 +425,7 @@
   {
     "__type__": "cc.PrefabInfo",
     "root": {
-      "__id__": 3
+      "__id__": 1
     },
     "asset": {
       "__uuid__": "ae073750-ace9-4de9-a19e-881434572784"
@@ -527,30 +434,32 @@
     "sync": false
   },
   {
+    "__type__": "5ff7fayT+hMtbB9dBLHDEMd",
+    "_name": "",
+    "_objFlags": 0,
+    "node": {
+      "__id__": 1
+    },
+    "_enabled": true,
+    "Sprite_HouseImg": {
+      "__id__": 6
+    },
+    "Label_HouseName": {
+      "__id__": 9
+    },
+    "Label_HouseDetail": {
+      "__id__": 12
+    }
+  },
+  {
     "__type__": "cc.PrefabInfo",
     "root": {
-      "__id__": 3
+      "__id__": 1
     },
     "asset": {
       "__uuid__": "ae073750-ace9-4de9-a19e-881434572784"
     },
     "fileId": "afyNGGxLJIjqRWb3OAiQYe",
     "sync": false
-  },
-  {
-    "__type__": "cc.Canvas",
-    "_name": "",
-    "_objFlags": 0,
-    "node": {
-      "__id__": 2
-    },
-    "_enabled": true,
-    "_designResolution": {
-      "__type__": "cc.Size",
-      "width": 750,
-      "height": 1334
-    },
-    "_fitWidth": false,
-    "_fitHeight": true
   }
 ]

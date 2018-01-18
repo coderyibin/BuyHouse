@@ -14,7 +14,7 @@ import { Base64 } from "./Base64";
     HOSPITAL = "Tip_Hospital",
     HELP = "Layer_Help",
     AGAIN = "Tip_Again",
-    BUYHOUSE = "Tip_BuyHouse",
+    BUYHOUSE = "Layer_SaleHouse",
     OVER = "Tip_GameOver",
     ADIARY = "Tip_ADiary",
     NEWS = "Tip_News",

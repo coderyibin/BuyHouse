@@ -40,11 +40,21 @@ import { RES } from "../common/resource";
         // super.onLoad(); 
         let self = this;
         self._oData = UnitComponent.oData;
+        UnitComponent.oData = null;
         self._fInitUI();
+    }
+
+    start () : void {
+        let self = this;
+        self.initUi();
     }
 
     _fInitUI () : void {
         let btn : ButtonClick = this.node.addComponent("ButtonClick");
         btn.CreateButton(this, Common.fGetObjectName(this));
+    }
+
+    initUi () : void {
+
     }
  }

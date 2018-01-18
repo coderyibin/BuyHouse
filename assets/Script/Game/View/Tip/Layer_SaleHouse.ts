@@ -30,7 +30,7 @@ export default class Layer_SaleHouse extends LayerComponent {
 		let data = this._oData || null;
 		   // cc.log(data);
 		let house = GameCtrl.getInstance().fGetTargetHousePrice();
-	   
+		
 	}
 
 }

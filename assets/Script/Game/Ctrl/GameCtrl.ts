@@ -108,7 +108,7 @@ import { Emitter } from "../../Frame/ctrl/Emitter";
         return Product;
     }
 
-    //获取当前选择的房子的房价
+    //获取当前的房价
     fGetTargetHousePrice () : string {
         let house : number = Common.fGetRandom(6, 18) / 1000;
         // let house : number = Common.fGetRandom(4000, 30000);

@@ -12,11 +12,13 @@ import { Emitter } from "../../Frame/ctrl/Emitter";
     private _oProduct : any;//商品数量
     private _refreshList : boolean;//是否刷新背包列表
     private _nCurTime : number;//游戏时间
+    private _nDefault : number;//默认选择的房子
 
      constructor () {
          super();
          let self = this;
          self._nCurTime = 0;
+         self._nDefault = 1;
     }
 
     /**
@@ -103,9 +105,20 @@ import { Emitter } from "../../Frame/ctrl/Emitter";
         }).slice(0, 5);
         if (Product.length == 0) debugger
         Product = self._fGetFloatPrice(Product);
-        let house = Common.fGetRandom(10, 30) / 10;
-        // let hprice = 
         return Product;
+    }
+
+    //获取当前选择的房子的房价
+    fGetTargetHousePrice () : string {
+        // let house : number = Common.fGetRandom(10, 30) / 100;
+        let house : number = Common.fGetRandom(4000, 30000);
+        let arrPrice = this._clientData.fGetHousePriceData();
+        for (let i in arrPrice) {
+            arrPrice[i].nPrice += house;
+        }
+        let hprice = this._clientData.fGetBuyTarget(this._nDefault);//选择的房子的房价
+        // hprice *= 0.2;
+        return Common.UnitConversion(hprice);
     }
 
     /**

@@ -2,7 +2,8 @@
     "Common" : [
         "Config",
         "TheEvent",
-        "HousePrice",
+        "HousePrices",
+        "HouseFloat",
         "Product"     
     ],
     "StartGame" : [

@@ -45,7 +45,7 @@ export class ClientData {
         cc["TheEvent"] = JSON.parse(JSON.stringify(cc["RES"].Res.global.TheEvent));
         this._oEventData = cc["RES"].Res.global.TheEvent;
         delete cc["RES"].Res.global.TheEvent;
-        this._oHouseData = cc["RES"].Res.global.TheEvent;
+        this._oHouseData = cc["RES"].Res.global.HousePrices;
         delete cc["RES"].Res.global.HousePrices;
         
     }
@@ -61,7 +61,7 @@ export class ClientData {
      * 获取房价数据
      */
     fGetHousePriceData () : any {
-
+        return this._oHouseData;
     }
 
     /**

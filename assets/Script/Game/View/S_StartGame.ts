@@ -54,6 +54,8 @@ export default class S_StartGame extends SceneComponent {
     //更新玩家数据
     updateUserData () : void {
         let data = GameCtrl.getInstance().fGetPlayerData();
+        let house = GameCtrl.getInstance().fGetTargetHousePrice();
+        this._LabelData["label_HousePrice"].string = house;
         this._LabelData["label_deposit"].string = data.PlayerDeposit;
         this._LabelData["label_cash"].string = data.PlayerMoney;
         this._LabelData["label_health"].string = data.PlayerCurHealth;

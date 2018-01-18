@@ -111,7 +111,7 @@ export enum RES_TYPE {
     private static _loadRes (file : string, cb : Function, target : any) : void {
         cc.loader.loadRes(file, (err, res) => {//res 图片的话为texture2d对象
             if (err) {
-                cc.warn(res, "图片资源读取出错");
+                cc.warn("资源读取出错", err);
                 return;
             }
             if (res instanceof cc.Texture2D) {

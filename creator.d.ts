@@ -13819,9 +13819,9 @@ declare module cc {
 		!#zh 过渡类型 */
 		export enum Transition {			
 			NONE = 0,
-			COLOR = 1,
-			SPRITE = 2,
-			SCALE = 3,		
+			COLOR = 0,
+			SPRITE = 0,
+			SCALE = 0,		
 		}	
 	}
 		

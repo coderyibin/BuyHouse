@@ -19,13 +19,13 @@ export enum RES_TYPE {
 
     static ResConfig : inter_Res = {};
 
-    //加载资源配置文件--直接加载公共资源
-    static loadResConfig (cb : Function) : void {
-        RES.loadJson("resources", (res : inter_Res)=>{
-            RES.ResConfig = res;
-            cb(res.Common);
-        });
-    }
+    // //加载资源配置文件--直接加载公共资源
+    // static loadResConfig (cb : Function) : void {
+    //     RES.loadJson("resources", (res : inter_Res)=>{
+    //         RES.ResConfig = res;
+    //         cb(res.Common);
+    //     });
+    // }
 
     /**
      * 加载全局资源组

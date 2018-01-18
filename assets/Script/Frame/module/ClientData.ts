@@ -7,6 +7,8 @@ export class ClientData {
     private _oResource : any;
     private _oGameConfig : any;
     private _oProductData : any;
+    private _oEventData : any;
+    private _oHouseData : any;
     
 
     constructor () {
@@ -14,6 +16,8 @@ export class ClientData {
         console.log("客户端数据初始化");
         self._oResource = {};
         self._oGameConfig = {};
+        self._oEventData = {};
+        self._oHouseData = {};
         // self._loadInitConfig();
     }
 
@@ -38,6 +42,12 @@ export class ClientData {
         this._oProductData = cc["RES"].Res.global.Product;
         delete cc["RES"].Res.global.Product;
         this._oGameConfig = cc["RES"].Res.global.Config;
+        cc["TheEvent"] = JSON.parse(JSON.stringify(cc["RES"].Res.global.TheEvent));
+        this._oEventData = cc["RES"].Res.global.TheEvent;
+        delete cc["RES"].Res.global.TheEvent;
+        this._oHouseData = cc["RES"].Res.global.TheEvent;
+        delete cc["RES"].Res.global.HousePrices;
+        
     }
 
     /**
@@ -45,6 +55,23 @@ export class ClientData {
      */
     fGetProductOriginal (id) : number {
         return cc["Product"][id].price;
+    }
+
+    /**
+     * 获取房价数据
+     */
+    fGetHousePriceData () : any {
+
+    }
+
+    /**
+     * 获取当前目标的房价
+     * @param 要购买的房子id
+     * @returns 房价
+     */
+    fGetBuyTarget (id : number) : number {
+        let data : inter_House = this._oHouseData[id];
+        return data.nPrice;
     }
 
     /**设置游戏配置
@@ -58,6 +85,16 @@ export class ClientData {
     }
     fGetGameConfig () : inter_Config {
         return this._oGameConfig;
+    }
+
+    /**
+     * 获取游戏剧情
+     */
+    fGetGamePlot (id) : inter_Event {
+        if (id) {
+            return this._oEventData[id] || null;
+        }
+        return this._oEventData;
     }
 
     //设置获取资源文件数据

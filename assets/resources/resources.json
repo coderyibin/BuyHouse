@@ -1,19 +1,13 @@
 {
     "Common" : [
         "Config",
-        "Product",
-        "Common/0",
-        "Common/2",
-        "Common/3",
-        "Common/4",
-        "Common/5",
-        "Common/6",
-        "Common/7",
-        "Common/8",
-        "Common/9",
-        "Common/1"        
+        "TheEvent",
+        "HousePrice",
+        "Product"     
     ],
     "StartGame" : [
+        "StartGame/Prefab/Tip_News",
+        "StartGame/Prefab/Tip_ADiary",
         "StartGame/Prefab/Tip_Expand",
         "StartGame/Prefab/Tip_Bank",
         "StartGame/Prefab/Tip_Hospital",

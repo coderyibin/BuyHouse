@@ -13,12 +13,20 @@
     nLastPrice ?: number//商品上次价格
  }
 
+ //房价数据结构
+ interface inter_House {
+    id ?: number        //房子id
+    sDetails ?: string  //房子描述
+    sName ?: string     //房子名称
+    sPrice ?: number    //房子价格
+ }
+
  //资源结构
  interface inter_Res {
     Common ?: Array<string>//公共
     StartGame ?: Array<string>//开始游戏
  }
-
+//游戏玩家数据结构
  interface inter_Player {
     nBout ?: number;//本局得分
     nMaxScore ?: number;//最高分数
@@ -32,7 +40,7 @@
     nCurPackageCount ?: number//当前背包空间
     nAllPackageCount ?: number//总背包空间
 }
-
+//游戏的配置
  interface inter_Config {
      mode ?: number;//游戏模式
      Speed ?: number;//游戏速度
@@ -46,4 +54,15 @@
      RepositoryPrice ?: number//背包空间单价
      BaseHealth ?: number//健康基数
      MinHealth ?: number//最低健康
+ }
+
+ //剧情事件
+ interface inter_Event {
+    sDetails ?: string//剧情详情
+    nPrice ?: number//产品价格
+    nProductID ?: number//产品id
+    nMoney ?: number//现金事件
+    nDeposit ?: number//存款事件
+    nHuose ?: number//房价事件
+    nHealth ?: number//健康事件
  }

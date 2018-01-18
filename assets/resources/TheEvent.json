@@ -1,157 +1,157 @@
 {
     "1" : {
-        "details" : "某调查表明，外国人一直在吃转基因食品，转基因豆要大卖",
-        "price" : 150,
-        "productID" : 5
+        "sDetails" : "某调查表明，外国人一直在吃转基因食品，转基因豆要大卖",
+        "nPrice" : 150,
+        "nProductID" : 5
     }
     ,
     "28" : {
-        "details" : "某调查表明，转基因食品有害健康，转基因豆无人问津",
-        "price" : 70,
-        "productID" : 5
+        "sDetails" : "某调查表明，转基因食品有害健康，转基因豆无人问津",
+        "nPrice" : 70,
+        "nProductID" : 5
     }
     ,
     "55" : {
-        "details" : "某调查表明，饲料生擒激素过多，不利于身体健康，饲料生擒无人敢买",
-        "price" : 100,
-        "productID" : 5
+        "sDetails" : "某调查表明，饲料生擒激素过多，不利于身体健康，饲料生擒无人敢买",
+        "nPrice" : 100,
+        "nProductID" : 5
     }
     ,
     "15" : {
-        "details" : "扶老人过马路，现金减少200",
-        "money" : -200,
-        "productID" : 0
+        "sDetails" : "扶老人过马路，现金减少200",
+        "nMoney" : -200,
+        "nProductID" : 0
     }
     ,
     "25" : {
-        "details" : "走在路上被抢，现金减少15%",
-        "money" : -0.15,
-        "productID" : 0
+        "sDetails" : "走在路上被抢，现金减少15%",
+        "nMoney" : -0.15,
+        "nProductID" : 0
     }
     ,
     "29" : {
-        "details" : "最近股票大涨，存款增加10万",
-        "deposit" : 100000,
-        "productID" : 0
+        "sDetails" : "最近股票大涨，存款增加10万",
+        "nDeposit" : 100000,
+        "nProductID" : 0
     }
     ,
     "99" : {
-        "details" : "最近股票大涨，存款增加100万",
-        "price" : 1000000,
-        "productID" : 0
+        "sDetails" : "最近股票大涨，存款增加100万",
+        "nPrice" : 1000000,
+        "nProductID" : 0
     }
     ,
     "66" : {
-        "details" : "学人理财，存款增加10%",
-        "deposit" : 0.1,
-        "productID" : 0
+        "sDetails" : "学人理财，存款增加10%",
+        "nDeposit" : 0.1,
+        "nProductID" : 0
     }
     ,
     "16" : {
-        "details" : "H1N1禽流感病例再次出现，全城灭杀生擒，没人敢吃生擒",
-        "price" : 100,
-        "productID" : 3
+        "sDetails" : "H1N1禽流感病例再次出现，全城灭杀生擒，没人敢吃生擒",
+        "nPrice" : 100,
+        "nProductID" : 3
     }
     ,
     "116" : {
-        "details" : "欧美经济一路好转，国际金价一路下跌，黄金饰品价格走低",
-        "price" : 1080,
-        "productID" : 2
+        "sDetails" : "欧美经济一路好转，国际金价一路下跌，黄金饰品价格走低",
+        "nPrice" : 1080,
+        "nProductID" : 2
     }
     ,
     "126" : {
-        "details" : "二胎政策开放，奶粉需求大增，进口奶粉价格一路上涨",
-        "price" : 680,
-        "productID" : 8
+        "sDetails" : "二胎政策开放，奶粉需求大增，进口奶粉价格一路上涨",
+        "nPrice" : 680,
+        "nProductID" : 8
     }
     ,
     "156" : {
-        "details" : "国际掀起抢金热潮，黄金价格飙涨",
-        "price" : 6740,
-        "productID" : 2
+        "sDetails" : "国际掀起抢金热潮，黄金价格飙涨",
+        "nPrice" : 6740,
+        "nProductID" : 2
     }
     ,
     "186" : {
-        "details" : "进口奶粉被检测出有害物质，进口奶粉价格下跌",
-        "price" : 110,
-        "productID" : 8
+        "sDetails" : "进口奶粉被检测出有害物质，进口奶粉价格下跌",
+        "nPrice" : 110,
+        "nProductID" : 8
     }
     ,
     "85" : {
-        "details" : "爱疯手机出新版，大家纷纷抢购，新货供不应求",
-        "price" : 7610,
-        "productID" : 4
+        "sDetails" : "爱疯手机出新版，大家纷纷抢购，新货供不应求",
+        "nPrice" : 7610,
+        "nProductID" : 4
     }
     ,
     "105" : {
-        "details" : "爱疯手机误导消费观念，销量减少，价格下跌",
-        "price" : 2400,
-        "productID" : 4
+        "sDetails" : "爱疯手机误导消费观念，销量减少，价格下跌",
+        "nPrice" : 2400,
+        "nProductID" : 4
     }
     ,
     "86" : {
-        "details" : "收到银行一条短信，小额账户要收管理费，存款减少1%",
-        "deposit" : -0.01,
-        "productID" : 0
+        "sDetails" : "收到银行一条短信，小额账户要收管理费，存款减少1%",
+        "nDeposit" : -0.01,
+        "nProductID" : 0
     }
     ,
     "45" : {
-        "details" : "小道消息，房产税出台，购房者纷纷持币观望，房价下跌5%",
-        "house" : -0.05,
-        "productID" : 0
+        "sDetails" : "小道消息，房产税出台，购房者纷纷持币观望，房价下跌5%",
+        "DHouse" : -0.05,
+        "nProductID" : 0
     }
     ,
     "95" : {
-        "details" : "雾霾到来，PM2.5超标，人们上街都带面罩",
-        "price" : 3500,
-        "productID" : 6
+        "sDetails" : "雾霾到来，PM2.5超标，人们上街都带面罩",
+        "nPrice" : 3500,
+        "nProductID" : 6
     }
     ,
     "27" : {
-        "details" : "受风寒感冒，健康减少1",
-        "health" : -1,
-        "productID" : 0
+        "sDetails" : "受风寒感冒，健康减少1",
+        "nHealth" : -1,
+        "nProductID" : 0
     }
     ,
     "154" : {
-        "details" : "路过小区，被掉下花瓶砸到，健康减少2",
-        "health" : -2,
-        "productID" : 0
+        "sDetails" : "路过小区，被掉下花瓶砸到，健康减少2",
+        "nHealth" : -2,
+        "nProductID" : 0
     }
     ,
     "166" : {
-        "details" : "见义勇为受伤，健康减少2",
-        "health" : -2,
-        "productID" : 0
+        "sDetails" : "见义勇为受伤，健康减少2",
+        "nHealth" : -2,
+        "nProductID" : 0
     }
     ,
     "167" : {
-        "details" : "没钱，连续吃馒头，营养不良，健康减少2",
-        "health" : -2,
-        "productID" : 0
+        "sDetails" : "没钱，连续吃馒头，营养不良，健康减少2",
+        "nHealth" : -2,
+        "nProductID" : 0
     }
     ,
     "127" : {
-        "details" : "汽车经销商说，工厂产能不足，提车必须加价",
-        "price" : 49500,
-        "productID" : 1
+        "sDetails" : "汽车经销商说，工厂产能不足，提车必须加价",
+        "nPrice" : 49500,
+        "nProductID" : 1
     }
     ,
     "165" : {
-        "details" : "开发商倒闭，我的集资款打水，现金减少20%",
-        "money" : -0.2,
-        "productID" : 0
+        "sDetails" : "开发商倒闭，我的集资款打水，现金减少20%",
+        "nMoney" : -0.2,
+        "nProductID" : 0
     }
     ,
     "187" : {
-        "details" : "专家预估，国内房地产在2200年前不会出现泡沫，房价上涨10%",
-        "house" : 0.1,
-        "productID" : 0
+        "sDetails" : "专家预估，国内房地产在2200年前不会出现泡沫，房价上涨10%",
+        "DHouse" : 0.1,
+        "nProductID" : 0
     }
     ,
     "100" : {
-        "details" : "钢铁产能过剩，汽车价格下跌",
-        "price" : 15000,
-        "productID" : 1
+        "sDetails" : "钢铁产能过剩，汽车价格下跌",
+        "nPrice" : 15000,
+        "nProductID" : 1
     }
 }

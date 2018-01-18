@@ -5,6 +5,7 @@ import { MODULE, OVER_TYPE } from "../../Frame/common/Common";
 import { Emitter } from "../../Frame/ctrl/Emitter";
 import { Unit_Product } from "./Unit_Product";
 import Tip_Buy from "./Tip/Tip_Buy";
+import Tip_ADiary from "./Tip/Tip_ADiary";
 
 
 const {ccclass, property} = cc._decorator;
@@ -34,8 +35,20 @@ export default class S_StartGame extends SceneComponent {
         let self = this;
         Emitter.getInstance().on("refresh", self._refresh_package.bind(self), self);
         Emitter.getInstance().on("update", self.updateUserData.bind(self), self);
+        Emitter.getInstance().on("adiary", self.updateAdiary.bind(self), self);
+        Emitter.getInstance().on("news", self.updateNews.bind(self), self);
         self._startGame();
         self.updateUserData();
+    }
+
+    //更新日记
+    updateAdiary (name, data) : void {
+        this.showLayer(MODULE.ADIARY, data);
+    }
+
+    //更新新闻
+    updateNews (name, data) : void {
+        this.showLayer(MODULE.NEWS, data);
     }
 
     //更新玩家数据
@@ -87,6 +100,7 @@ export default class S_StartGame extends SceneComponent {
     _tap_Compute () : void{
         let self = this;
         GameCtrl.getInstance().fGameOver((type : OVER_TYPE)=>{
+            if (type == OVER_TYPE.NONE) return; 
             self._gameOver(type);
         });
         self._refresh_Shop();

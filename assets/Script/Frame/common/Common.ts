@@ -16,6 +16,8 @@ import { Base64 } from "./Base64";
     AGAIN = "Tip_Again",
     BUYHOUSE = "Tip_BuyHouse",
     OVER = "Tip_GameOver",
+    ADIARY = "Tip_ADiary",
+    NEWS = "Tip_News",
  }
  //场景的名称
  export enum SCENE_NAME {
@@ -26,6 +28,7 @@ import { Base64 } from "./Base64";
 
  //游戏结束方式
  export enum OVER_TYPE {
+     NONE,
      BUY,
      TIMEOUT,
      DIE
@@ -111,7 +114,6 @@ import { Base64 } from "./Base64";
         return len;
     }
 
-
     /**
      * 获取当前脚本对象名称
      * @param 脚本对象
@@ -131,4 +133,17 @@ import { Base64 } from "./Base64";
         let regString = /[a-zA-Z]+/; //验证大小写26个字母任意字母最少出现1次。
         return regString.test(str);//true:包含
     }
+
+    /**
+     * 单位换算
+     * @param 数字
+     * @return 换算后的结果
+     */
+    static UnitConversion (num : number) : any {
+        let snum = num + "";
+        if (snum.length > 4) {
+            snum = snum.substr(0, snum.length - 4) + "万";
+        }
+        return snum;
+    } 
  }

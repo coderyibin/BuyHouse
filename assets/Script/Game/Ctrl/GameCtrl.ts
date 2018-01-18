@@ -2,6 +2,7 @@ import { BaseCtrl } from "../../Frame/ctrl/BaseCtrl";
 import { Common, BANK, OVER_TYPE } from "../../Frame/common/Common";
 import { ClientData } from "../../Frame/module/ClientData";
 import PlayerData from "../Moudle/PlayerData";
+import { Emitter } from "../../Frame/ctrl/Emitter";
 
 /**
  * 游戏控制器
@@ -102,6 +103,8 @@ import PlayerData from "../Moudle/PlayerData";
         }).slice(0, 5);
         if (Product.length == 0) debugger
         Product = self._fGetFloatPrice(Product);
+        let house = Common.fGetRandom(10, 30) / 10;
+        // let hprice = 
         return Product;
     }
 
@@ -109,11 +112,57 @@ import PlayerData from "../Moudle/PlayerData";
      * 计算商品价格的浮动
      */
     private _fGetFloatPrice (Products : Array<any>) : any {
+        let isevent = false;
         for (let i in Products) {
-            let dis = Common.fGetRandom(Products[i].minP, Products[i].maxP);
+            let dis = null;
+            dis = Common.fGetRandom(Products[i].minP, Products[i].maxP);                          
+            if (! isevent) {
+                let d = this.fGetEvent(Products[i].id);  
+                isevent = true;
+                if (d) {
+                    dis = d;
+                }    
+            } 
             Products[i].price = dis;
         }
         return Products;
+    }
+
+    //获取游戏剧情事件
+    fGetEvent (id) : any {
+        let index = Common.fGetRandom(1, 200);
+        let event : inter_Event = this._clientData.fGetGamePlot(index);
+        if (event) {
+            if (event.nProductID && event.nProductID > 0 && event.nProductID == id) {//产品事件
+                Emitter.getInstance().emit("news", {text : event.sDetails});
+                return event.nPrice;
+            } else if (event.nHealth) {//健康事件
+                let health = PlayerData.getInstance().getPlayerData().PlayerCurHealth + event.nHealth;                
+                PlayerData.getInstance().getPlayerData().PlayerCurHealth = health;
+                Emitter.getInstance().emit("ADiary", {text : event.sDetails});
+            } else if (event.nDeposit) {//存款事件
+                if (event.nDeposit > 0 && event.nDeposit < 1) {
+                    let d = PlayerData.getInstance().getPlayerData().PlayerDeposit * event.nDeposit;
+                    PlayerData.getInstance().getPlayerData().PlayerDeposit += d;
+                } else {
+                    PlayerData.getInstance().getPlayerData().PlayerDeposit += event.nDeposit;      
+                }
+                Emitter.getInstance().emit("ADiary", {text : event.sDetails});
+            } else if (event.nMoney) {//现金事件
+                let d = 0;
+                if (event.nMoney > 0 && event.nMoney < 1) {
+                    d = PlayerData.getInstance().getPlayerData().PlayerMoney * event.nMoney;
+                } else {
+                    d = event.nMoney;
+                }
+                let money = PlayerData.getInstance().getPlayerData().PlayerMoney + d;
+                PlayerData.getInstance().getPlayerData().PlayerMoney = money;
+                Emitter.getInstance().emit("ADiary", {text : event.sDetails});
+            } else if (event.nHuose) {//房价事件
+                Emitter.getInstance().emit("news", {text : event.sDetails});
+            }
+            Emitter.getInstance().emit("update");
+        }
     }
 
     fGetProductItem (id : number) : any {
@@ -131,7 +180,7 @@ import PlayerData from "../Moudle/PlayerData";
         let Deposit = PlayerData.getInstance().getPlayerData().PlayerDeposit;
         let money = ClientData.getInstance().fGetProductData(id).price;
         let total = count * money;
-        cc.log("购买数量", count, "单价", money, "总价", total)
+        // cc.log("购买数量", count, "单价", money, "总价", total)
         if (Money >= total || Deposit >= total) {//足够购买
             return total;
         } else {
@@ -161,12 +210,12 @@ import PlayerData from "../Moudle/PlayerData";
      * 游戏结束
      */
     fGameOver (cb : Function) : void {
-        if (this._nCurTime >= this._clientData.fGetGameConfig().GameTime) {
+        if (this._nCurTime >= this._clientData.fGetGameConfig().GameTime) {//超时
             cb(OVER_TYPE.TIMEOUT);
-        } else if (PlayerData.getInstance().getPlayerData().PlayerCurHealth <= this._clientData.fGetGameConfig().MinHealth) {
+        } else if (PlayerData.getInstance().getPlayerData().PlayerCurHealth <= this._clientData.fGetGameConfig().MinHealth) {//健康消耗结束
             cb(OVER_TYPE.DIE);
         } else {
-            cb(OVER_TYPE.BUY);
+            // cb(OVER_TYPE.BUY);
         }
     }
 

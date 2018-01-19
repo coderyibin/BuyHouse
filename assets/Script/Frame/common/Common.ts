@@ -9,6 +9,7 @@ import { Base64 } from "./Base64";
     BUY = "Tip_Buy",
     SALE = "Tip_Sale",
     SHOP_UNIT = "Unit_Product",
+    House_UNIT = "Unit_House",
     EXPAND = "Tip_Expand",
     BANK = "Tip_Bank",
     HOSPITAL = "Tip_Hospital",

@@ -339,7 +339,7 @@
   },
   {
     "__type__": "cc.Node",
-    "_name": "_list_House",
+    "_name": "content",
     "_objFlags": 0,
     "_parent": {
       "__id__": 7
@@ -373,7 +373,7 @@
     "_contentSize": {
       "__type__": "cc.Size",
       "width": 750,
-      "height": 1000
+      "height": 1750
     },
     "_rotationX": 0,
     "_rotationY": 0,
@@ -402,7 +402,7 @@
     "_layoutSize": {
       "__type__": "cc.Size",
       "width": 750,
-      "height": 1000
+      "height": 1750
     },
     "_resize": 0,
     "_N$layoutType": 2,
@@ -440,7 +440,7 @@
     "node": {
       "__id__": 7
     },
-    "_enabled": true,
+    "_enabled": false,
     "_type": 0,
     "_segements": 64,
     "_N$spriteFrame": null,
@@ -1214,11 +1214,6 @@
       "__id__": 1
     },
     "_enabled": true,
-    "ArrScrollView": [
-      {
-        "__id__": 13
-      }
-    ],
     "ArrButton": [
       {
         "__id__": 31
@@ -1232,7 +1227,10 @@
         "__id__": 29
       }
     ],
-    "ArrEditsBox": []
+    "ArrEditsBox": [],
+    "HouseList": {
+      "__id__": 13
+    }
   },
   {
     "__type__": "cc.PrefabInfo",

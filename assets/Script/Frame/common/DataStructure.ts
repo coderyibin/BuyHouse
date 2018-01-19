@@ -19,6 +19,7 @@
     sDetails ?: string  //房子描述
     sName ?: string     //房子名称
     sPrice ?: number    //房子价格
+    sPath ?: number    //房子图片路径
  }
 
  //资源结构

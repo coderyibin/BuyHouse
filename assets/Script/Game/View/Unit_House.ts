@@ -24,6 +24,18 @@ export class Unit_House extends UnitComponent {
         type : cc.Label
     })
     Label_HouseDetail : cc.Label = null;
+    
+    @property({
+        tooltip : "房子价格",
+        type : cc.Label
+    })
+    Label_HousePrice : cc.Label = null;
+    
+    @property({
+        tooltip : "选中",
+        type : cc.Node
+    })
+    Node_HouseSelect : cc.Node = null;
 
     onLoad () : void {
         super.onLoad();
@@ -31,10 +43,25 @@ export class Unit_House extends UnitComponent {
 
     
     initUi () : void { 
-        this.Label_HouseName.string = this._oData.name;
+        this.Label_HouseName.string = this._oData.sName;
+        this.Label_HouseDetail.string = this._oData.sDetails;
+        this.Label_HousePrice.string = this._oData.nPrice;
+        this.Sprite_HouseImg.spriteFrame = RES.fGetRes(this._oData.sPath);
+        this.Node_HouseSelect.active = false;
     }
     
-    _tap_Unit_Product (event, data) : void {
+    _tap_Unit_House (event, data) : void {
+        if (this._oData.cb) {
+            this._oData.cb(this._oData.id, this._oData.nPrice);
+        }
+    }
+
+    public HideSelected (id : number) : void {
+        if (id == this._oData.id) {
+            this.Node_HouseSelect.active = true;
+        } else {
+            this.Node_HouseSelect.active = false;
+        }
     }
 
 }

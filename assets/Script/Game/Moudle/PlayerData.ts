@@ -37,6 +37,11 @@ export default class PlayerData extends Hero {
         return this._oData;
     }
 
+    //获取玩家资产
+    fGetPlayerMeans () : number {
+        return this._oData.PlayerMoney + this._oData.PlayerDeposit;
+    }
+
     fAddProduct (id : number, count : number) : void {
         let _package = this.Package || {};
         let product = JSON.parse(JSON.stringify(ClientData.getInstance().fGetProductData(id)));

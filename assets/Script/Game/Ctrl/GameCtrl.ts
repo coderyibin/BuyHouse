@@ -126,6 +126,17 @@ import { Emitter } from "../../Frame/ctrl/Emitter";
         return this._clientData.fGetHousePriceData();        
     }
 
+    //购买房子
+    fBuyHouse (id : number) : any {
+        let price = this._clientData.fGetBuyTarget(id);
+        let Money = PlayerData.getInstance().fGetPlayerMeans();
+        if (price > Money) {
+            return false;
+        } else {
+            
+        }
+    }
+
     /**
      * 计算商品价格的浮动
      */

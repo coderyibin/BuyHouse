@@ -13,8 +13,8 @@ import { ResDefine } from "../common/ResDefine";
 @ccclass
 @executionOrder(0)
 export default class BaseComponent extends cc.Component {
-    @property([cc.ScrollView])
-    ArrScrollView : cc.ScrollView[] = [];
+    // @property([cc.ScrollView])
+    // ArrScrollView : cc.ScrollView[] = [];
     @property([cc.Node])
     ArrButton : cc.Node[] = [];
     @property([cc.Label])

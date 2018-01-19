@@ -6,16 +6,25 @@ import LayerComponent from "../../../Frame/view/LayerComponent";
 import { GameCtrl } from "../../Ctrl/GameCtrl";
 import { Emitter } from "../../../Frame/ctrl/Emitter";
 import { RES } from "../../../Frame/common/resource";
+import { MODULE } from "../../../Frame/common/Common";
+import { Unit_House } from "../Unit_House";
 
 const { ccclass, property } = cc._decorator;
 
 @ccclass
 export default class Layer_SaleHouse extends LayerComponent {
 	//私有变量
-	_id : number = 0;
+	private _id : number = 0;
+	private _lists : Array<Unit_House> = [];
+	private _selectPrice : number;
+	private _nHousePrice : number;
 	//私有变量声明结束
 	//这边去声明ui组件
-
+	@property({
+		tooltip : "售楼列表",
+		type : cc.ScrollView
+	})
+	HouseList : cc.ScrollView = null;
 	//声明ui组件end
 
 
@@ -34,15 +43,26 @@ export default class Layer_SaleHouse extends LayerComponent {
 		let money = game.fGetPlayerData().PlayerMoney;
 		this._LabelData["label_Money"].string = money;
 		let house = game.fGetHouseList();
-		
+		for (let i in house) {
+			house[i]["cb"] = this.SelectHouse.bind(this);
+            let node = Unit_House.show(MODULE.House_UNIT, house[i]);
+			this.HouseList.content.addChild(node);
+			this._lists.push(node.getComponent(node.name));
+		}
 	}
 
-	_list_House () : any {
-		return [{name:"ss5555"},{name:"ww5555"},{name:"55rr55"},{name:"55"}];
+	//选择要买的房子id,价格
+	public SelectHouse (id : number, price : number) : void {
+		for (let i in this._lists) {
+			let comp = this._lists[i];
+			comp.HideSelected(id);
+		}
+		this._selectPrice = price;
+		this._nHousePrice = id;
 	}
 
 	_tap_Btn_Buy () : void {
-
+		let data = GameCtrl.getInstance().fBuyHouse(this._nHousePrice);
 	}
 
 	_tap_Btn_Cancel () : void {

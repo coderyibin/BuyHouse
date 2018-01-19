@@ -1,3 +1,5 @@
+作者：JustinLin
+
 # hello-world
 Hello world new project template.
 这是一个仿买房记的游戏，现已完成主线以及周边的大部分功能
@@ -8,4 +10,21 @@ Hello world new project template.
 1、事件机制，脱离creator节点的事件机制
 2、按钮自动绑定机制：原本的两种做法·遍历所有节点，以前缀名称来判断是否是按钮，是的话就绑定事件，后因担心如果节点层级深度过深，会耗费性能于是改成编辑器手动拖动到脚本设置好的数组，脚本再去遍历数据去统一绑定
 3、文本组件的事件监听的统一绑定，开始输入和输入中和输入结束都有自动绑定事件，只要脚本实现函数即可。
+
+2018.1.19 0.0.2
+更新：
+1、去除由场景获取Canvas节点,改用cc.find("Canvas");
+
+
+
+
+
+命名方式：
+单元类：Unit_开头，继承UnitComponent组件
+标签层级类：以Layer_开头，继承LayerComponent组件
+场景类：以Scene_开头，继承SceneComponent组件
+弹窗类：以Tip_开头，继承TipComponent组件
+所有场景包括预制资源与脚本同名，方便处理。
+
+
 

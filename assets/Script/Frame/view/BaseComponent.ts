@@ -8,20 +8,21 @@ import { ClientData } from "../module/ClientData"
 import { RES, RES_TYPE } from "../common/resource";
 import { LOCAL_KEY } from "../common/Common";
 import ButtonClick from "./ButtonClick";
+import { ResDefine } from "../common/ResDefine";
 
 @ccclass
 @executionOrder(0)
 export default class BaseComponent extends cc.Component {
-    @property(cc.Node)
+    @property([cc.ScrollView])
     ArrScrollView : cc.ScrollView[] = [];
-    @property(cc.Node)
+    @property([cc.Node])
     ArrButton : cc.Node[] = [];
-    @property(cc.Label)
+    @property([cc.Label])
     ArrLabel : cc.Label[] = [];
-    @property(cc.EditBox)
+    @property([cc.EditBox])
     ArrEditsBox : cc.EditBox[] = [];
-    @property(cc.Node)
-    Canvas : cc.Node = null;
+    // @property(cc.Node)
+    // Canvas : cc.Node = null;
     // @property({
     //     type : cc.Node,
     //     tooltip: "这是一个屏蔽层layer",
@@ -39,32 +40,26 @@ export default class BaseComponent extends cc.Component {
     _EditBoxData : any;//输入框对象集合
     _Canvas : cc.Node;//尽量使用当前
     onLoad () : void {
+        //隐藏帧率
         cc.director.setDisplayStats(false);
         let self = this; 
         self._emitter = Emitter.getInstance();
         self._client = ClientData.getInstance();
         self._initData();
-        if (self._isLogicNode()) {
-            self._logicNode();
-        }
-
-        self._initUI();
-    }
-
-    start () : void {
-        let list = this._ScrollData;
-        for (let i in list) {
-
-        }
-    }
-
-    _initUI () : void {
-        let self = this;
+        //逻辑节点脚本名称--下个版本去除
+        self._logicComponentName = self.fGetLogicComponentName();
         this._Canvas = cc.find("Canvas");
+        //解析各个ui组件
         self._registerButton();
         self._fLabelObject();
         self._fEditBoxObject();
-        self._fEditBoxObject();
+        self._fScrollViewObject();
+    }
+
+    start () : void {
+
+        //获取scrollview列表需要的数据
+        // this._fGetListNeedData();
     }
 
     _initData () : void {
@@ -74,19 +69,6 @@ export default class BaseComponent extends cc.Component {
         self._EditBoxData = {};
         self._ButtonData = {};
         self._ScrollData = {};
-    }
-
-    /**
-     * 逻辑节点做得一些另外的操作
-     */
-    _logicNode () : void {
-        let self = this;
-        //当前如果是逻辑节点才去注册这个事件，避免重复注册
-        // self._emitter.on("runScene", self._runScene, self);
-        self._logicComponentName = self.fGetLogicComponentName();
-        
-        // self._registerButton();
-        // self._fLabelObject();
     }
 
     /**
@@ -146,7 +128,31 @@ export default class BaseComponent extends cc.Component {
     }
 
     /**
-     * 判断当前节点是否是逻辑节点
+     * 获取列表需要的数据
+     */
+    _fGetListNeedData () : void {
+        let list = this._ScrollData;
+        for (let i in list) {
+            let scroll = list[i];
+            let data = this[`_list_${i}`]();
+            this._fJoinScrollView(i, data);
+        }
+    }
+
+    /**
+     * 添加scrollview内容-仅限拥有layout布局组件
+     */
+    private _fJoinScrollView (name : string, data : any) : void {
+        let node = this._ScrollData[name].content;
+        for (let i in data) {
+            let sName = `Unit_${name}`;
+            let item = ResDefine[sName].show(name, data);
+            node.addChild(item);
+        }
+    }
+
+    /**
+     * 判断当前节点是否是逻辑节点--会在下一个版本去除，逻辑节点统一由Canvas管理
      * @return 是否是逻辑节点
      */
     _isLogicNode () : boolean {

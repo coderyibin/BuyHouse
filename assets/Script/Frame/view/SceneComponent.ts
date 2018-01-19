@@ -7,6 +7,11 @@ const { ccclass,  property } = cc._decorator;
 @ccclass
 export default class SceneComponent extends BaseComponent {
 
+    onLoad () : void {
+        super.onLoad();
+        let self = this;
+        self._emitter.on("runScene", self._runScene, self);
+    }
     /**
      * 跳转场景
      * @param 跳转的场景名称
@@ -17,6 +22,7 @@ export default class SceneComponent extends BaseComponent {
         cc.director.preloadScene(sceneName, (err) => {
             if (err) {
                 cc.warn("场景预加载失败->[", sceneName, "]");
+                debugger;
             } else {
                 self.onExit();
                 cc.director.loadScene(sceneName, callBack);

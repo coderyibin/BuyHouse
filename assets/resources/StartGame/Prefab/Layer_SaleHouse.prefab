@@ -1214,6 +1214,11 @@
       "__id__": 1
     },
     "_enabled": true,
+    "ArrScrollView": [
+      {
+        "__id__": 13
+      }
+    ],
     "ArrButton": [
       {
         "__id__": 31
@@ -1227,8 +1232,7 @@
         "__id__": 29
       }
     ],
-    "ArrEditsBox": [],
-    "Canvas": null
+    "ArrEditsBox": []
   },
   {
     "__type__": "cc.PrefabInfo",

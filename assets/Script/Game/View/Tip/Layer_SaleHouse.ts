@@ -34,9 +34,11 @@ export default class Layer_SaleHouse extends LayerComponent {
 		let money = game.fGetPlayerData().PlayerMoney;
 		this._LabelData["label_Money"].string = money;
 		let house = game.fGetHouseList();
-		for (let i in house) {
+		
+	}
 
-		}
+	_list_House () : any {
+		return [{name:"ss5555"},{name:"ww5555"},{name:"55rr55"},{name:"55"}];
 	}
 
 	_tap_Btn_Buy () : void {

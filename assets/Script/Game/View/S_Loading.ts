@@ -23,6 +23,7 @@ export default class S_Loading extends cc.Component {
 
     onLoad () : void {
         let self = this;
+        cc.director.setDisplayStats(false);
         self.Loading.progress = 0.1;
         self._setProgressText(0.11);
         RES.loadJson("resources", (res : inter_Res)=>{

@@ -1,13 +1,15 @@
 import { SCENE_NAME } from "../../Frame/common/Common";
 import { RES } from "../../Frame/common/resource";
-import PlayerData from "../Moudle/PlayerData";
-import { ClientData } from "../../Frame/module/ClientData";
+// import PlayerData from "../Moudle/PlayerData";
+// import { ClientData } from "../../Frame/module/ClientData";
+import SceneComponent from "../../Frame/view/SceneComponent";
+import { GameCtrl } from "../Ctrl/GameCtrl";
 
 
 const {ccclass, property} = cc._decorator;
 
 @ccclass
-export default class S_Loading extends cc.Component {
+export default class S_Loading extends SceneComponent {
 
     @property({
         tooltip : "",
@@ -21,8 +23,21 @@ export default class S_Loading extends cc.Component {
     })
     ProgressLabel : cc.Label = null;
 
+    @property({
+        tooltip : "ri节点",
+        type : cc.Node
+    })
+    Node_R1 : cc.Node = null;
+
+    @property({
+        tooltip : "r11节点",
+        type : cc.Node
+    })
+    Node_R2 : cc.Node = null;
+
     onLoad () : void {
         let self = this;
+        super.onLoad();
         cc.director.setDisplayStats(false);
         self.Loading.progress = 0.1;
         self._setProgressText(0.11);
@@ -30,6 +45,9 @@ export default class S_Loading extends cc.Component {
             let r = res.Common.concat(res.StartGame);
             RES.loadArrayToGlobal(r, self._onProgress.bind(self), self._onSucceed.bind(self));
         });
+
+        this.Node_R1.active = false;
+        this.Node_R2.active = false;
     }
 
     private _setProgressText (count : number) : void {
@@ -47,8 +65,23 @@ export default class S_Loading extends cc.Component {
     _onSucceed () : void {
         let self = this;
         self.Loading.progress = 1;
-        PlayerData.getInstance().init();        
-        ClientData.getInstance().init();
-        cc.director.loadScene(SCENE_NAME.MENU_SCENE);
+        GameCtrl.getInstance().fCleanGameData();
+        // cc.director.loadScene(SCENE_NAME.MENU_SCENE);
+        let is = cc.sys.localStorage.getItem("Once");
+        if (! is) {
+            this.Node_R1.active = true;     
+            cc.sys.localStorage.setItem("Once", true);               
+        } else {
+            cc.director.loadScene(SCENE_NAME.MENU_SCENE);                    
+        }
+    }
+
+    _tap_JiXu () : void {
+        this.Node_R1.active = false;        
+        this.Node_R2.active = true;        
+    }
+
+    _tap_Start () : void {
+        cc.director.loadScene(SCENE_NAME.MENU_SCENE);        
     }
 }

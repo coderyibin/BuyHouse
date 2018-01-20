@@ -55,6 +55,9 @@
      RepositoryPrice ?: number//背包空间单价
      BaseHealth ?: number//健康基数
      MinHealth ?: number//最低健康
+     s_end ?: string//超时描述
+     d_end ?: string//健康结束游戏
+     sBuyHouse ?: string//买到房子
  }
 
  //剧情事件

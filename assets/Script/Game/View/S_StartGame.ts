@@ -1,7 +1,7 @@
 import { GameCtrl } from "../Ctrl/GameCtrl";
 import { RES } from "../../Frame/common/resource";
 import SceneComponent from "../../Frame/view/SceneComponent";
-import { MODULE, OVER_TYPE } from "../../Frame/common/Common";
+import { MODULE, OVER_TYPE, SCENE_NAME } from "../../Frame/common/Common";
 import { Emitter } from "../../Frame/ctrl/Emitter";
 import { Unit_Product } from "./Unit_Product";
 import Tip_Buy from "./Tip/Tip_Buy";
@@ -61,7 +61,7 @@ export default class S_StartGame extends SceneComponent {
         this._LabelData["label_health"].string = data.PlayerCurHealth;
         this._LabelData["label_reputation"].string = data.PlayerReputation;
         this._LabelData["label_Repository"].string = (data.nAllPackageCount - data.nCurPackageCount) + "/" + data.nAllPackageCount;
-        this._LabelData["Label_Medati"].string = _gameCtrl.fGetTime();
+        this._LabelData["Label_Time"].string = _gameCtrl.fGetTime();
     }
 
     private _startGame () : void {
@@ -101,17 +101,28 @@ export default class S_StartGame extends SceneComponent {
 
     _tap_Compute () : void{
         let self = this;
-        GameCtrl.getInstance().fGameOver((type : OVER_TYPE)=>{
+        GameCtrl.getInstance().fGameOver((type : OVER_TYPE, data ?: any)=>{
             if (type == OVER_TYPE.NONE) return; 
-            self._gameOver(type);
+            self._gameOver(type, data);
         });
         self._refresh_Shop();
         self.updateUserData();
+        let color = GameCtrl.getInstance().fTimeOut();
+        self._LabelData["Label_Time"].node.color = color;
     }
 
     //游戏结束
-    private _gameOver (type : OVER_TYPE) : void {
-        this.showLayer(MODULE.OVER);
+    private _gameOver (type : OVER_TYPE, data) : void {
+        this.showLayer(MODULE.MSG, {
+            Title : data.Title,
+            Content : data.Content,
+            cb : this._fOver.bind(this)
+        });
+    }
+
+    private _fOver () : void {
+        GameCtrl.getInstance().fCleanGameData()
+        this._runScene(SCENE_NAME.MENU_SCENE);
     }
 
     _tap_RepositoryExpand (event, data) : void {
@@ -131,7 +142,7 @@ export default class S_StartGame extends SceneComponent {
     }
 
     _tap_BuyHouse () : void {
-        this.showLayer(MODULE.BUYHOUSE);        
+        this.showLayer(MODULE.BUYHOUSE, {cb : this._tap_Compute.bind(this)});        
     }
 
     _tap_HosPital () : void {

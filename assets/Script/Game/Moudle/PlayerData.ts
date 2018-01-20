@@ -14,11 +14,11 @@ export default class PlayerData extends Hero {
         this._oData.nAllPackageCount = cc["RES"]["Res"]["global"]["Config"].Repository;
         this._oData.nCurPackageCount = cc["RES"]["Res"]["global"]["Config"].Repository;
         this._oData.PlayerDeposit = cc["RES"]["Res"]["global"]["Config"].PlayerDeposit || 0;
-        delete cc["RES"]["Res"]["global"]["Config"].PlayerMoney;
-        delete cc["RES"]["Res"]["global"]["Config"].PlayerHealth;
-        delete cc["RES"]["Res"]["global"]["Config"].PlayerReputation;
-        delete cc["RES"]["Res"]["global"]["Config"].PlayerDeposit;
-        delete cc["RES"]["Res"]["global"]["Config"].Repository;
+        // delete cc["RES"]["Res"]["global"]["Config"].PlayerMoney;
+        // delete cc["RES"]["Res"]["global"]["Config"].PlayerHealth;
+        // delete cc["RES"]["Res"]["global"]["Config"].PlayerReputation;
+        // delete cc["RES"]["Res"]["global"]["Config"].PlayerDeposit;
+        // delete cc["RES"]["Res"]["global"]["Config"].Repository;
     }
 
     //存取款

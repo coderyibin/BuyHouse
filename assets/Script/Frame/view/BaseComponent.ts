@@ -121,10 +121,10 @@ export default class BaseComponent extends cc.Component {
      */
     private _fScrollViewObject () : void {
         let self = this;
-        for (let i in self.ArrScrollView) {
-            let name = self.ArrScrollView[i].node.name;
-            self._ScrollData[name] = self.ArrScrollView[i];
-        }        
+        // for (let i in self.ArrScrollView) {
+        //     let name = self.ArrScrollView[i].node.name;
+        //     self._ScrollData[name] = self.ArrScrollView[i];
+        // }        
     }
 
     /**
@@ -149,6 +149,35 @@ export default class BaseComponent extends cc.Component {
             let item = ResDefine[sName].show(name, data);
             node.addChild(item);
         }
+    }
+
+     /**
+     * 显示弹窗
+     */
+    showLayer (module : string, data ?: any) : void {
+        let node = RES.fGetRes(module);
+        let comp = node.getComponent(module);
+        if (comp) {
+            node.getComponent(module).init(data);
+            let canvas = this._Canvas;
+            this._fAddLayerToCanvas(node.name);
+            canvas.addChild(node);    
+        } else {
+            cc.warn("未创建脚本组件", module);
+        }
+    }
+
+    /**
+     * 添加屏蔽层到canvas节点
+     */
+    _fAddLayerToCanvas (name : string) : void {
+        let canvas = this._Canvas;
+        let node = new cc.Node();
+        node.name = `shield${name}`;
+        let btn = node.addComponent(cc.Button);
+        node.setContentSize(this.getWinSize());
+        canvas.addChild(node);
+        node.color = cc.Color.GRAY;
     }
 
     /**

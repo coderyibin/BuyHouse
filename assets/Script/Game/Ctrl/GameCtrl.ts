@@ -13,12 +13,19 @@ import { Emitter } from "../../Frame/ctrl/Emitter";
     private _refreshList : boolean;//是否刷新背包列表
     private _nCurTime : number;//游戏时间
     private _nDefault : number;//默认选择的房子
+    private _oBuyHouse : any;//买到的房子的数据
 
      constructor () {
          super();
          let self = this;
-         self._nCurTime = 0;
-         self._nDefault = 1;
+         this.init();
+    }
+
+    init () : void {
+        let self = this;
+        self._nCurTime = 0;
+        self._nDefault = 1;
+        self._oBuyHouse = null;
     }
 
     /**
@@ -131,9 +138,22 @@ import { Emitter } from "../../Frame/ctrl/Emitter";
         let price = this._clientData.fGetBuyTarget(id);
         let Money = PlayerData.getInstance().fGetPlayerMeans();
         if (price > Money) {
-            return false;
+            // return false;
+            this._oBuyHouse = {
+                nTime : this._nCurTime,
+                nId : id,
+            };
+            return {
+                msg : this._clientData.fGetGameConfig().sBuyHouse,
+            };
         } else {
-            
+            this._oBuyHouse = {
+                nTime : this._nCurTime,
+                nId : id,
+            };
+            return {
+                msg : this._clientData.fGetGameConfig().sBuyHouse,
+            };
         }
     }
 
@@ -240,12 +260,43 @@ import { Emitter } from "../../Frame/ctrl/Emitter";
      */
     fGameOver (cb : Function) : void {
         if (this._nCurTime >= this._clientData.fGetGameConfig().GameTime) {//超时
-            cb(OVER_TYPE.TIMEOUT);
+            let data = {
+                Title : "游戏结束",
+                Content : this._clientData.fGetGameConfig().s_end
+            }
+            cb(OVER_TYPE.TIMEOUT, data);
         } else if (PlayerData.getInstance().getPlayerData().PlayerCurHealth <= this._clientData.fGetGameConfig().MinHealth) {//健康消耗结束
-            cb(OVER_TYPE.DIE);
-        } else {
-            // cb(OVER_TYPE.BUY);
+            let data = {
+                Title : "游戏结束",
+                Content : this._clientData.fGetGameConfig().d_end
+            }
+            cb(OVER_TYPE.DIE, data);
+        } else if (this._oBuyHouse) {
+            let data = {
+                Title : "恭喜",
+                Content : this._clientData.fGetGameConfig().sBuyHouse
+            }
+            cb(OVER_TYPE.BUY, data);
         }
+    }
+
+    /**
+     * 时间接近
+     */
+    fTimeOut () : cc.Color {
+        if (this._nCurTime > this._clientData.fGetGameConfig().GameTime - 6) {
+            return cc.Color.RED;
+        }
+        return cc.Color.BLACK;
+    }
+
+    /**
+     * 清除游戏数据
+     */
+    fCleanGameData() : void {
+        this._clientData.init();
+        PlayerData.getInstance().init();
+        this.init();
     }
 
     static _cCtrl : GameCtrl;

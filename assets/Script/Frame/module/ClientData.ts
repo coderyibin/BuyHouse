@@ -40,13 +40,13 @@ export class ClientData {
     init () : void {
         cc["Product"] = JSON.parse(JSON.stringify(cc["RES"].Res.global.Product));
         this._oProductData = cc["RES"].Res.global.Product;
-        delete cc["RES"].Res.global.Product;
+        // delete cc["RES"].Res.global.Product;
         this._oGameConfig = cc["RES"].Res.global.Config;
         cc["TheEvent"] = JSON.parse(JSON.stringify(cc["RES"].Res.global.TheEvent));
         this._oEventData = cc["RES"].Res.global.TheEvent;
-        delete cc["RES"].Res.global.TheEvent;
+        // delete cc["RES"].Res.global.TheEvent;
         this._oHouseData = cc["RES"].Res.global.HousePrices;
-        delete cc["RES"].Res.global.HousePrices;
+        // delete cc["RES"].Res.global.HousePrices;
         
     }
 

@@ -16,7 +16,7 @@ import { Base64 } from "./Base64";
     HELP = "Layer_Help",
     AGAIN = "Tip_Again",
     BUYHOUSE = "Layer_SaleHouse",
-    OVER = "Tip_GameOver",
+    MSG = "Tip_Msg",
     ADIARY = "Tip_ADiary",
     NEWS = "Tip_News",
  }

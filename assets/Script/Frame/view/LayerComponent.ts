@@ -1,5 +1,6 @@
 import BaseComponent from "./BaseComponent";
 import { RES } from "../common/resource";
+import { Common } from "../common/Common";
 
 const { ccclass,  property } = cc._decorator;
 
@@ -30,7 +31,7 @@ export default class LayerComponent extends BaseComponent {
         this.init();
     }
 
-    init (data ?: any) : void {
+    private init (data ?: any) : void {
         if (data) {
             this._oData = data;
             LayerComponent.oData = data;
@@ -41,14 +42,13 @@ export default class LayerComponent extends BaseComponent {
     }
 
     initUi () : void {
-
     }
 
     /**
      * 关闭自己
      */
     fRemoveSelf () : void {
-        cc.find("Canvas/shield").destroy();
+        cc.find("Canvas/shield" + Common.fGetObjectName(this)).destroy();
         this.node.destroy();
     }
     removeSelf () : void {

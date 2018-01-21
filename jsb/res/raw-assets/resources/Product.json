@@ -1,0 +1,92 @@
+{
+    "1" : {
+        "id" : 1,
+        "name" : "汽车",
+        "price" : 11000,
+        "path" : "qiche",
+        "max" : 1.8,
+        "min" : 0.2,
+        "maxP" : 45200,
+        "minP" : 9850
+    },
+    "2" : {
+        "id" : 2,
+        "name" : "黄金饰品",
+        "price" : 3410,
+        "path" : "huangjinshipin",
+        "max" : 3.1,
+        "min" : 0.6,
+        "maxP" : 7400,
+        "minP" : 1040
+    },
+    "3" : {
+        "id" : 3,
+        "name" : "饲料生擒",
+        "path" : "shengqin",
+        "price" : 340,
+        "max" : 2.1,
+        "min" : 0.5,
+        "maxP" : 450,
+        "minP" : 100
+    },
+    "4" : {
+        "id" : 4,
+        "name" : "爱疯手机",
+        "path" : "shouji",
+        "price" : 6410,
+        "max" : 1.9,
+        "min" : 0.4,
+        "maxP" : 8500,
+        "minP" : 2400
+    },
+    "5" : {
+        "id" : 5,
+        "name" : "转基因豆",
+        "path" : "zhuanjiyinqingcai",
+        "price" : 75,
+        "max" : 2.0,
+        "min" : 0.8,
+        "maxP" : 180,
+        "minP" : 43
+    },
+    "6" : {
+        "id" : 6,
+        "name" : "防尘面罩",
+        "path" : "mianzhao",
+        "price" : 1101,
+        "max" : 3.0,
+        "min" : 0.6,
+        "maxP" : 3200,
+        "minP" : 1040
+    },
+    "7" : {
+        "id" : 7,
+        "name" : "化妆品",
+        "path" : "huazhuangpin",
+        "price" : 1200,
+        "max" : 1.8,
+        "min" : 0.3,
+        "maxP" : 3200,
+        "minP" : 1100
+    },
+    "8" : {
+        "id" : 8,
+        "name" : "进口奶粉",
+        "path" : "naifen",
+        "price" : 450,
+        "max" : 2.0,
+        "min" : 0.6,
+        "maxP" : 740,
+        "minP" : 108
+    },
+    "9" : {
+        "id" : 9,
+        "name" : "精品大米",
+        "path" : "jingpindami",
+        "price" : 50,
+        "max" : 3,
+        "min" : 0.1,
+        "maxP" : 150,
+        "minP" : 40
+    }
+}

@@ -1,15 +1,12 @@
 import { SCENE_NAME } from "../../Frame/common/Common";
 import { RES } from "../../Frame/common/resource";
-// import PlayerData from "../Moudle/PlayerData";
-// import { ClientData } from "../../Frame/module/ClientData";
-import SceneComponent from "../../Frame/view/SceneComponent";
 import { GameCtrl } from "../Ctrl/GameCtrl";
-
+import BaseLoading from "../../Frame/view/BaseLoading";
 
 const {ccclass, property} = cc._decorator;
 
 @ccclass
-export default class S_Loading extends SceneComponent {
+export default class S_Loading extends BaseLoading {
 
     @property({
         tooltip : "",
@@ -38,7 +35,10 @@ export default class S_Loading extends SceneComponent {
     onLoad () : void {
         let self = this;
         super.onLoad();
-        cc.director.setDisplayStats(false);
+    }
+
+    private _fLoadRes () : void {
+        let self = this;
         self.Loading.progress = 0.1;
         self._setProgressText(0.11);
         RES.loadJson("resources", (res : inter_Res)=>{

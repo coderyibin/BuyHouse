@@ -71,6 +71,10 @@ export default class BaseComponent extends cc.Component {
         self._ScrollData = {};
     }
 
+    protected _isNative (): boolean {
+        return cc.sys.isNative;
+    }
+
     /**
      * 注册按钮事件
      */

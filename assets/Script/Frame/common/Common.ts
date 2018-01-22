@@ -22,6 +22,7 @@ import { Base64 } from "./Base64";
  }
  //场景的名称
  export enum SCENE_NAME {
+     LOADING = "Loading",
      MENU_SCENE = "MenuScene",
      START_SCENE = "StartGame",
      OVER_SCENE = "GameOver"

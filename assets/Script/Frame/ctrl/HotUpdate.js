@@ -382,7 +382,7 @@ cc.Class({
     extends: cc.Component,
 
     properties: {
-        panel: UpdatePanel,
+        panel: /*UpdatePanel*/null,
         manifestUrl: cc.RawAsset,
         updateUI: cc.Node,
         _updating: false,

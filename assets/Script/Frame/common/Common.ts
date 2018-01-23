@@ -4,7 +4,7 @@ import { Base64 } from "./Base64";
  * 全局的一些定义
  */
 //是否启用多语言
- export let I18N = true;
+ export let I18N = false;
 
 
  //模块定义

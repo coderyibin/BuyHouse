@@ -1,6 +1,7 @@
 import SceneComponent from "./SceneComponent";
 import { RES } from "../common/resource";
 import { MODULE } from "../common/Common";
+import Tip_Update from "./Tip_Update.ts";
 
 const { ccclass, property } = cc._decorator;
 
@@ -11,13 +12,6 @@ export default class BaseLoading extends SceneComponent {
         url : cc.RawAsset
     })
     manifestUrl : cc.RawAsset = null;
-
-    
-    @property({
-        tooltip : "热更新弹窗",
-        type : cc.Node
-    })
-    Panel_Update : cc.Node = null;
 
     _versionCompareHandle : Function;
     _am : any;
@@ -41,6 +35,14 @@ export default class BaseLoading extends SceneComponent {
             self._fCheckUpdate();
 
         }
+        this.showUpdateTip();
+    }
+
+    //显示更新弹窗
+    showUpdateTip () : void {
+        RES.loadRes("StartGame/Prefab/Tip_Update", ()=>{
+            this.showLayer(MODULE.UPDATE, {cb : this.hotUpdate.bind(this)});
+        });
     }
 
     _tap_Update () : void {
@@ -124,6 +126,7 @@ export default class BaseLoading extends SceneComponent {
             this._am.setMaxConcurrentTask(2);
             // this.panel.info.string = "Max concurrent tasks count have been limited to 2";
         }
+        this.checkUpdate();
         
         // this.panel.fileProgress.progress = 0;
         // this.panel.byteProgress.progress = 0;

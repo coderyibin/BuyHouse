@@ -86,7 +86,7 @@ export default class S_Loading extends BaseLoading {
             this.Node_R1.active = true;     
             cc.sys.localStorage.setItem("Once", true);               
         } else {
-            cc.director.loadScene(SCENE_NAME.MENU_SCENE);                    
+            // cc.director.loadScene(SCENE_NAME.MENU_SCENE);                    
         }
     }
 

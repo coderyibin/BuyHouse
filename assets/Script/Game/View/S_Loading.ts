@@ -41,6 +41,7 @@ export default class S_Loading extends BaseLoading {
     _fCheckUpdate () : void {
         //请求热更新地址
         RES.loadJson("NetConfig", (res)=>{
+            console.log("请求热更新地址", res.HotUpdateUrl)
             let http = new NetHttp(res.HotUpdateUrl, (data)=>{
                 cc.log(data);
                 this._manifestUrl = JSON.parse(data);

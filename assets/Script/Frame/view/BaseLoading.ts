@@ -1,10 +1,23 @@
 import SceneComponent from "./SceneComponent";
 import { RES } from "../common/resource";
+import { MODULE } from "../common/Common";
 
 const { ccclass, property } = cc._decorator;
 
 @ccclass
 export default class BaseLoading extends SceneComponent {    
+    @property({
+        tooltip : "本地的热更新配置文件",
+        url : cc.RawAsset
+    })
+    manifestUrl : cc.RawAsset = null;
+
+    
+    @property({
+        tooltip : "热更新弹窗",
+        type : cc.Node
+    })
+    Panel_Update : cc.Node = null;
 
     _versionCompareHandle : Function;
     _am : any;
@@ -14,7 +27,6 @@ export default class BaseLoading extends SceneComponent {
     _updating: boolean;
     _canRetry: boolean;
     _storagePath: string;
-    _manifestUrl : any;//热更新配置
 
     onLoad () : void {
         let self = this;
@@ -48,14 +60,14 @@ export default class BaseLoading extends SceneComponent {
             return;
         }
         this._storagePath = ((jsb.fileUtils ? jsb.fileUtils.getWritablePath() : '/') + 'blackjack-remote-asset');
-        cc.log('Storage path for remote asset : ' + this._storagePath);
+        console.log('Storage path for remote asset : ' + this._storagePath);
 
         // Setup your own version compare handler, versionA and B is versions in string
         // if the return value greater than 0, versionA is greater than B,
         // if the return value equals 0, versionA equals to B,
         // if the return value smaller than 0, versionA is smaller than B.
         this._versionCompareHandle = function (versionA, versionB) {
-            cc.log("JS Custom Version Compare: version A is " + versionA + ', version B is ' + versionB);
+            console.log("JS Custom Version Compare: version A is " + versionA + ', version B is ' + versionB);
             var vA = versionA.split('.');
             var vB = versionB.split('.');
             for (var i = 0; i < vA.length; ++i) {
@@ -118,24 +130,28 @@ export default class BaseLoading extends SceneComponent {
     }
 
     checkCb (event) : void {
-        cc.log('Code: ' + event.getEventCode());
+        console.log('Code: ' + event.getEventCode());
         switch (event.getEventCode())
         {
             case jsb.EventAssetsManager.ERROR_NO_LOCAL_MANIFEST:
                 // this.panel.info.string = "No local manifest file found, hot update skipped.";
+                console.log("No local manifest file found, hot update skipped.");
                 break;
             case jsb.EventAssetsManager.ERROR_DOWNLOAD_MANIFEST:
             case jsb.EventAssetsManager.ERROR_PARSE_MANIFEST:
                 // this.panel.info.string = "Fail to download manifest file, hot update skipped.";
+                console.log("Fail to download manifest file, hot update skipped.");
                 break;
             case jsb.EventAssetsManager.ALREADY_UP_TO_DATE:
                 // this.panel.info.string = "Already up to date with the latest remote version.";
+                console.log("Already up to date with the latest remote version.");
                 break;
             case jsb.EventAssetsManager.NEW_VERSION_FOUND:
                 // this.panel.info.string = 'New version found, please try to update.';
                 // this.panel.checkBtn.active = false;
                 // this.panel.fileProgress.progress = 0;
                 // this.panel.byteProgress.progress = 0;
+                this.showLayer(MODULE.UPDATE, {cb : this.hotUpdate.bind(this)});
                 break;
             default:
                 return;
@@ -147,6 +163,7 @@ export default class BaseLoading extends SceneComponent {
     }
 
     updateCb (event) : void {
+        console.log("3333333333333");
         var needRestart = false;
         var failed = false;
         switch (event.getEventCode())
@@ -232,6 +249,7 @@ export default class BaseLoading extends SceneComponent {
     // }
     
     retry () {
+        console.log("wwwwwwwwwwww");
         if (!this._updating && this._canRetry) {
             // this.panel.retryBtn.active = false;
             this._canRetry = false;
@@ -241,13 +259,15 @@ export default class BaseLoading extends SceneComponent {
         }
     }
     
+    //检查更新
     checkUpdate () {
+        console.log("44444444444444");
         if (this._updating) {
             // this.panel.info.string = 'Checking or updating ...';
             return;
         }
         if (this._am.getState() === jsb.AssetsManager.State.UNINITED) {
-            this._am.loadLocalManifest(this._manifestUrl);
+            this._am.loadLocalManifest(this.manifestUrl);
         }
         if (!this._am.getLocalManifest() || !this._am.getLocalManifest().isLoaded()) {
             // this.panel.info.string = 'Failed to load local manifest ...';
@@ -261,12 +281,13 @@ export default class BaseLoading extends SceneComponent {
     }
 
     hotUpdate () {
+        console.log("uuuuuuuuuuuuuuu");
         if (this._am && !this._updating) {
             this._updateListener = new jsb.EventListenerAssetsManager(this._am, this.updateCb.bind(this));
             cc.eventManager.addListener(this._updateListener, 1);
 
             if (this._am.getState() === jsb.AssetsManager.State.UNINITED) {
-                this._am.loadLocalManifest(this._manifestUrl);
+                this._am.loadLocalManifest(this.manifestUrl);
             }
 
             this._failCount = 0;

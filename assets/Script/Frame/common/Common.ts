@@ -22,6 +22,7 @@ import { Base64 } from "./Base64";
     MSG = "Tip_Msg",
     ADIARY = "Tip_ADiary",
     NEWS = "Tip_News",
+    UPDATE = "Tip_Update",
  }
  //场景的名称
  export enum SCENE_NAME {

@@ -8,6 +8,7 @@
     ],
     "StartGame" : [
         "StartGame/Prefab/Layer_SaleHouse",
+        "StartGame/Prefab/Tip_Update",
         "StartGame/Prefab/Tip_News",
         "StartGame/Prefab/Tip_Msg",
         "StartGame/Prefab/Tip_ADiary",

@@ -96,7 +96,7 @@ export default class BaseComponent extends cc.Component {
      * 分析文本对象
      */
     private _fLabelObject () : void {
-        i18n.init("en");
+        // i18n.init("en");
         let self = this;
         for (let i in self.ArrLabel) {
             let node = self.ArrLabel[i].node;
@@ -108,7 +108,7 @@ export default class BaseComponent extends cc.Component {
                 }
             }
             self._LabelData[sName] = self.ArrLabel[i];
-            self.ArrLabel[i].string = i18n.t('hello');
+            // self.ArrLabel[i].string = i18n.t('hello');
         }
     }
 

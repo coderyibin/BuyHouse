@@ -102,8 +102,8 @@
     "_scaleY": 1,
     "_position": {
       "__type__": "cc.Vec2",
-      "x": 480,
-      "y": 320
+      "x": 375,
+      "y": 667
     },
     "_skewX": 0,
     "_skewY": 0,
@@ -1178,6 +1178,9 @@
     ],
     "ArrLabel": [],
     "ArrEditsBox": [],
+    "manifestUrl": {
+      "__uuid__": "104f08f4-6cbc-420f-8a95-6d37fcb6756f"
+    },
     "Loading": {
       "__id__": 14
     },

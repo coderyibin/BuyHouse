@@ -6,9 +6,10 @@ const {ccclass, property, executionOrder} = cc._decorator;
 import { Emitter } from "../ctrl/Emitter"
 import { ClientData } from "../module/ClientData"
 import { RES, RES_TYPE } from "../common/resource";
-import { LOCAL_KEY } from "../common/Common";
+import { LOCAL_KEY, I18N } from "../common/Common";
 import ButtonClick from "./ButtonClick";
-import { ResDefine } from "../common/ResDefine";
+import BaseLabel from "./BaseLabel";
+// import { ResDefine } from "../common/ResDefine";
 
 @ccclass
 @executionOrder(0)
@@ -95,10 +96,19 @@ export default class BaseComponent extends cc.Component {
      * 分析文本对象
      */
     private _fLabelObject () : void {
+        i18n.init("en");
         let self = this;
         for (let i in self.ArrLabel) {
-            let sName = self.ArrLabel[i].node.name;
+            let node = self.ArrLabel[i].node;
+            let sName = node.name;
+            if (I18N === true) {//开启多语言
+                let localized = self.ArrLabel[i].getComponent("LocalizedLabel");
+                if (! localized) {
+                    node.addComponent("LocalizedLabel");
+                }
+            }
             self._LabelData[sName] = self.ArrLabel[i];
+            self.ArrLabel[i].string = i18n.t('hello');
         }
     }
 
@@ -147,12 +157,12 @@ export default class BaseComponent extends cc.Component {
      * 添加scrollview内容-仅限拥有layout布局组件
      */
     private _fJoinScrollView (name : string, data : any) : void {
-        let node = this._ScrollData[name].content;
-        for (let i in data) {
-            let sName = `Unit_${name}`;
-            let item = ResDefine[sName].show(name, data);
-            node.addChild(item);
-        }
+        // let node = this._ScrollData[name].content;
+        // for (let i in data) {
+        //     let sName = `Unit_${name}`;
+        //     let item = ResDefine[sName].show(name, data);
+        //     node.addChild(item);
+        // }
     }
 
      /**

@@ -28,11 +28,11 @@ export default class S_StartGame extends SceneComponent {
 
     onLoad () : void {
         super.onLoad();
-        _gameCtrl = GameCtrl.getInstance();
     }
 
     start () : void {
         let self = this;
+        _gameCtrl = GameCtrl.getInstance();
         Emitter.getInstance().on("refresh", self._refresh_package.bind(self), self);
         Emitter.getInstance().on("update", self.updateUserData.bind(self), self);
         Emitter.getInstance().on("adiary", self.updateAdiary.bind(self), self);

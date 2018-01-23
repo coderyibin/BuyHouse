@@ -2,6 +2,7 @@ import { SCENE_NAME } from "../../Frame/common/Common";
 import { RES } from "../../Frame/common/resource";
 import { GameCtrl } from "../Ctrl/GameCtrl";
 import BaseLoading from "../../Frame/view/BaseLoading";
+import { NetHttp } from "../../Frame/common/NetHttp";
 
 const {ccclass, property} = cc._decorator;
 
@@ -35,6 +36,18 @@ export default class S_Loading extends BaseLoading {
     onLoad () : void {
         let self = this;
         super.onLoad();
+    }
+
+    _fCheckUpdate () : void {
+        //请求热更新地址
+        RES.loadJson("NetConfig", (res)=>{
+            let http = new NetHttp(res.HotUpdateUrl, (data)=>{
+                cc.log(data);
+                this._manifestUrl = JSON.parse(data);
+                this._fCheck();
+            });
+            http.send("GET");
+        });
     }
 
     private _fLoadRes () : void {

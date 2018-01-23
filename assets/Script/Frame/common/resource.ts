@@ -30,7 +30,7 @@ export enum RES_TYPE {
     /**
      * 加载全局资源组
      * @param 资源数组名称
-     * @param 加载单个回调-没加载成功一个资源会回调一次
+     * @param 加载单个回调-每加载成功一个资源会回调一次
      * @param 加载资源组完成后回调
      */
     static loadArrayToGlobal (file : Array<string>, progress ?: Function, complete ?: Function) : void {

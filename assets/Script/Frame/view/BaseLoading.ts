@@ -35,7 +35,6 @@ export default class BaseLoading extends SceneComponent {
             self._fCheckUpdate();
 
         }
-        this.showUpdateTip();
     }
 
     //显示更新弹窗
@@ -154,7 +153,7 @@ export default class BaseLoading extends SceneComponent {
                 // this.panel.checkBtn.active = false;
                 // this.panel.fileProgress.progress = 0;
                 // this.panel.byteProgress.progress = 0;
-                this.showLayer(MODULE.UPDATE, {cb : this.hotUpdate.bind(this)});
+                this.showUpdateTip();
                 break;
             default:
                 return;

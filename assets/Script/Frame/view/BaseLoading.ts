@@ -165,13 +165,13 @@ export default class BaseLoading extends SceneComponent {
     }
 
     updateCb (event) : void {
-        console.log("3333333333333");
         var needRestart = false;
         var failed = false;
         switch (event.getEventCode())
         {
             case jsb.EventAssetsManager.ERROR_NO_LOCAL_MANIFEST:
                 // this.panel.info.string = 'No local manifest file found, hot update skipped.';
+                console.log("No local manifest file found, hot update skipped.");
                 failed = true;
                 break;
             case jsb.EventAssetsManager.UPDATE_PROGRESSION:
@@ -185,32 +185,39 @@ export default class BaseLoading extends SceneComponent {
                 if (msg) {
                     // this.panel.info.string = 'Updated file: ' + msg;
                     // cc.log(event.getPercent()/100 + '% : ' + msg);
+                    console.log('Updated file: ' + msg);
                 }
                 break;
             case jsb.EventAssetsManager.ERROR_DOWNLOAD_MANIFEST:
             case jsb.EventAssetsManager.ERROR_PARSE_MANIFEST:
                 // this.panel.info.string = 'Fail to download manifest file, hot update skipped.';
+                console.log("Fail to download manifest file, hot update skipped.");
                 failed = true;
                 break;
             case jsb.EventAssetsManager.ALREADY_UP_TO_DATE:
                 // this.panel.info.string = 'Already up to date with the latest remote version.';
                 failed = true;
+                console.log("Already up to date with the latest remote version.");
                 break;
             case jsb.EventAssetsManager.UPDATE_FINISHED:
                 // this.panel.info.string = 'Update finished. ' + event.getMessage();
                 needRestart = true;
+                console.log('Update finished. ' + event.getMessage());
                 break;
             case jsb.EventAssetsManager.UPDATE_FAILED:
                 // this.panel.info.string = 'Update failed. ' + event.getMessage();
                 // this.panel.retryBtn.active = true;
                 // this._updating = false;
                 // this._canRetry = true;
+                console.log('Update failed. ' + event.getMessage());
                 break;
             case jsb.EventAssetsManager.ERROR_UPDATING:
                 // this.panel.info.string = 'Asset update error: ' + event.getAssetId() + ', ' + event.getMessage();
+                console.log('Asset update error: ' + event.getAssetId() + ', ' + event.getMessage());
                 break;
             case jsb.EventAssetsManager.ERROR_DECOMPRESS:
                 // this.panel.info.string = event.getMessage();
+                console.log(event.getMessage());
                 break;
             default:
                 break;
@@ -229,7 +236,7 @@ export default class BaseLoading extends SceneComponent {
             var searchPaths = jsb.fileUtils.getSearchPaths();
             var newPaths = this._am.getLocalManifest().getSearchPaths();
             console.log(JSON.stringify(newPaths));
-            Array.prototype.unshift(searchPaths, newPaths);
+            Array.prototype.unshift(searchPaths, newPaths); 
             // This value will be retrieved and appended to the default search path during game startup,
             // please refer to samples/js-tests/main.js for detailed usage.
             // !!! Re-add the search paths in main.js is very important, otherwise, new scripts won't take effect.
@@ -257,6 +264,7 @@ export default class BaseLoading extends SceneComponent {
             this._canRetry = false;
             
             // this.panel.info.string = 'Retry failed Assets...';
+            console.log("Retry failed Assets...");
             this._am.downloadFailedAssets();
         }
     }
@@ -266,7 +274,8 @@ export default class BaseLoading extends SceneComponent {
         console.log("44444444444444");
         if (this._updating) {
             // this.panel.info.string = 'Checking or updating ...';
-            return;
+            console.log("Checking or updating ...");
+        return;
         }
         if (this._am.getState() === jsb.AssetsManager.State.UNINITED) {
             this._am.loadLocalManifest(this.manifestUrl);
@@ -296,6 +305,17 @@ export default class BaseLoading extends SceneComponent {
             this._am.update();
             // this.panel.updateBtn.active = false;
             this._updating = true;
+        }
+    }
+
+    onDestroy () {
+        console.log("移除loading界面");
+        if (this._updateListener) {
+            cc.eventManager.removeListener(this._updateListener);
+            this._updateListener = null;
+        }
+        if (this._am && !cc.sys.ENABLE_GC_FOR_NATIVE_OBJECTS) {
+            this._am.release();
         }
     }
     

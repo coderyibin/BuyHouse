@@ -175,7 +175,8 @@ export default class BaseComponent extends cc.Component {
             node.getComponent(module).init(data);
             let canvas = this._Canvas;
             this._fAddLayerToCanvas(node.name);
-            canvas.addChild(node);    
+            canvas.addChild(node);   
+            return comp; 
         } else {
             cc.warn("未创建脚本组件", module);
         }

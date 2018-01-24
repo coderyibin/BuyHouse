@@ -21,6 +21,7 @@ export default class BaseLoading extends SceneComponent {
     _updating: boolean;
     _canRetry: boolean;
     _storagePath: string;
+    _node_HotUpdate : any;
 
     onLoad () : void {
         let self = this;
@@ -40,7 +41,7 @@ export default class BaseLoading extends SceneComponent {
     //显示更新弹窗
     showUpdateTip () : void {
         RES.loadRes("StartGame/Prefab/Tip_Update", ()=>{
-            this.showLayer(MODULE.UPDATE, {cb : this.hotUpdate.bind(this)});
+            this._node_HotUpdate = this.showLayer(MODULE.UPDATE, {cb : this.hotUpdate.bind(this)});
         });
     }
 
@@ -187,6 +188,7 @@ export default class BaseLoading extends SceneComponent {
                     // cc.log(event.getPercent()/100 + '% : ' + msg);
                     console.log('Updated file: ' + msg);
                 }
+                this._node_HotUpdate.setProgressLength(event.getDownloadedBytes(), event.getTotalBytes());
                 break;
             case jsb.EventAssetsManager.ERROR_DOWNLOAD_MANIFEST:
             case jsb.EventAssetsManager.ERROR_PARSE_MANIFEST:
@@ -258,12 +260,9 @@ export default class BaseLoading extends SceneComponent {
     // }
     
     retry () {
-        console.log("wwwwwwwwwwww");
         if (!this._updating && this._canRetry) {
-            // this.panel.retryBtn.active = false;
             this._canRetry = false;
-            
-            // this.panel.info.string = 'Retry failed Assets...';
+        
             console.log("Retry failed Assets...");
             this._am.downloadFailedAssets();
         }
@@ -271,9 +270,7 @@ export default class BaseLoading extends SceneComponent {
     
     //检查更新
     checkUpdate () {
-        console.log("44444444444444");
         if (this._updating) {
-            // this.panel.info.string = 'Checking or updating ...';
             console.log("Checking or updating ...");
         return;
         }
@@ -281,7 +278,7 @@ export default class BaseLoading extends SceneComponent {
             this._am.loadLocalManifest(this.manifestUrl);
         }
         if (!this._am.getLocalManifest() || !this._am.getLocalManifest().isLoaded()) {
-            // this.panel.info.string = 'Failed to load local manifest ...';
+            console.log("Failed to load local manifest ...");
             return;
         }
         this._checkListener = new jsb.EventListenerAssetsManager(this._am, this.checkCb.bind(this));
@@ -292,7 +289,6 @@ export default class BaseLoading extends SceneComponent {
     }
 
     hotUpdate () {
-        console.log("uuuuuuuuuuuuuuu");
         if (this._am && !this._updating) {
             this._updateListener = new jsb.EventListenerAssetsManager(this._am, this.updateCb.bind(this));
             cc.eventManager.addListener(this._updateListener, 1);
@@ -303,7 +299,6 @@ export default class BaseLoading extends SceneComponent {
 
             this._failCount = 0;
             this._am.update();
-            // this.panel.updateBtn.active = false;
             this._updating = true;
         }
     }
@@ -318,10 +313,4 @@ export default class BaseLoading extends SceneComponent {
             this._am.release();
         }
     }
-    
-    // show () {
-    //     if (this.updateUI.active === false) {
-    //         this.updateUI.active = true;
-    //     }
-    // }
 }
